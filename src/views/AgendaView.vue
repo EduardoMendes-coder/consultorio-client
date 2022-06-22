@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <h1>homeviews</h1>
+  <div class="agenda">
+    <h1>agenda view</h1>
   </div>
 </template>
 
