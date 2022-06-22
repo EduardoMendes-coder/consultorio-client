@@ -1,51 +1,66 @@
 <template>
-  <aside class="menu">
-    <p class="menu-label">
-      Administrativo
-    </p>
-    <ul class="menu-list">
-      <li><router-link to="/convenio">Convênio</router-link></li>
-      <li><router-link to="/especialidade">Especialidade</router-link></li>
-    </ul>
-    <p class="menu-label">
-      Pessoal
-    </p>
-    <ul class="menu-list">
-      <li><router-link to="/medico">Médico</router-link></li>
-      <li><router-link to="/paciente">Paciente</router-link></li>
-      <li><router-link to="/secretaria">Secretaria</router-link></li>
-    </ul>
-    <p class="menu-label">
-      Agendamentos
-    </p>
-    <ul class="menu-list">
-      <li><router-link to="/agenda">Agenda</router-link></li>
-      <li><router-link to="/historico">Histórico</router-link></li>
-    </ul>
-  </aside>
+
+  <div class="column">
+    <div class="columns is-12 menu-top">
+      Consultório - XYZ
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column is-3">
+      <nav>
+        <aside class="menu">
+          <p class="menu-label"> Agenda </p>
+          <ul class="menu-list">
+            <li><router-link to="/agendamento">Agendamento</router-link></li>
+            <li><router-link to="/historico">Históricos</router-link></li>
+          </ul>
+
+          <p class="menu-label"> Pessoas </p>
+          <ul class="menu-list">
+            <li><router-link to="/paciente">Pacientes</router-link></li>
+            <li><router-link to="/medico">Médicos</router-link></li>
+            <li><router-link to="/secretaria">Secretárias</router-link></li>
+          </ul>
+
+          <p class="menu-label"> Administração </p>
+          <ul class="menu-list">
+            <li><router-link to="/especialidade">Especialidades</router-link></li>
+            <li><router-link to="/convenio">Convenios</router-link></li>
+          </ul>
+        </aside>
+      </nav>
+    </div>
+    <div class="column is-9 conteudo">
+      <router-view> </router-view>
+    </div>
+  </div>
 </template>
 
-<style>
-.menu{
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  background-color: whitesmoke;
-  width: 250px;
-  height: 100%;
-  align-items: flex-start;
-  border-width: 1px;
-  border-style: solid;
-  border-color: grey;
-  border-top-width: 0;
+<style lang="scss">
+@import "~bulma/bulma.sass";
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
 }
-.menu-label{
-  font-size: 15px !important;
-  margin: 10px;
-  color: dimgrey !important;
+nav {
+  padding: 30px;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
 }
-.menu-list{
-  font-size: 15px;
-  color: grey !important;
+.conteudo {
+  margin-top: 30px;
+}
+.menu-top{
+  background: hsl(0, 0%, 29%);
+  padding: 15px;
+  color: white;
 }
 </style>
