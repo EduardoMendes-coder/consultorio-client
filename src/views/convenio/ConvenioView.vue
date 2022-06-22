@@ -5,9 +5,7 @@
  </template>
 
 <script lang="ts">
-export default {
-  name: "convenio"
-}
+
 </script>
 
 <style scoped>
