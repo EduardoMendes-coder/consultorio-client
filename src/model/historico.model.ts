@@ -1,5 +1,5 @@
 import {AbstractEntity} from "./abstract-entity.model";
-import {StatusAgenda} from "./status-agenda.model";
+import {StatusAgenda} from "./status-agenda.enum";
 import {Secretaria} from "./secretaria.model";
 import {Paciente} from "./paciente.model";
 import {Agenda} from "./agenda.model";
