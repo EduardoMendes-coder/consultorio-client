@@ -30,7 +30,7 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  background-color: darkgrey;
+  background-color: whitesmoke;
   width: 250px;
   height: 100%;
   align-items: flex-start;
@@ -40,14 +40,12 @@
   border-top-width: 0;
 }
 .menu-label{
-  font-size: 20px !important;
+  font-size: 15px !important;
   margin: 10px;
-  color: black !important;
+  color: dimgrey !important;
 }
 .menu-list{
-  font-size: 20px;
+  font-size: 15px;
   color: grey !important;
 }
-
-
 </style>
