@@ -4,7 +4,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/form',
     name: 'home',
-    component: () => import("../views/convenio/FormDetalharConvenio.vue")
+    component: () => import("../views/especialidade/FormDetalharEspecialidade.vue")
   },
   {
     path: '/convenio',
