@@ -111,6 +111,10 @@
       </div>
     </div>
 
+    <div class="botoes-form">
+      <button class="button btn-voltar">Voltar</button>
+      <button class="button btn-salvar">Salvar</button>
+    </div>
   </div>
 </template>
 
@@ -139,6 +143,24 @@ export default {
 }
 .enum-tipo-atendimento{
   margin-left: 40px;
+}
+.botoes-form{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 20px;
+  margin-block-end: 20px;
+}
+.btn-salvar{
+  background-color: green;
+  color: white;
+  width: 40%;
+}
+.btn-voltar{
+  background-color: red;
+  color: white;
+  width: 40%;
 }
 
 </style>
