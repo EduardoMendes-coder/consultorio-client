@@ -28,6 +28,9 @@
           <td>21/03/2025</td>
           <td>Unimed</td>
           <td>(45)99856-8742</td>
+          <td>
+            <button class="button is-info">Detalhar</button>
+          </td>
         </tr>
         <tr>
           <th>2</th>
@@ -37,6 +40,9 @@
           <td>Não possui</td>
           <td>Não possui</td>
           <td>(45)99856-4354</td>
+          <td>
+            <button class="button is-info">Detalhar</button>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -68,6 +74,7 @@ export default {
   border-style: solid;
   border-color: darkgrey;
   border-width: 1px;
+
 }
 .btn-cadastrar{
   width: 30%;
