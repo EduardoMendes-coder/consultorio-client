@@ -1,16 +1,45 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import ConvenioView from "@/views/ConvenioView.vue";
+
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
+    path: '/form',
     name: 'home',
-    component: HomeView
+    component: () => import("../views/secretaria/FormDetalharSecretaria.vue")
   },
   {
     path: '/convenio',
     name: 'convenio',
-    component: ConvenioView
+    component: () => import("../views/convenio/ConvenioView.vue")
+  },
+  {
+    path: '/especialidade',
+    name: 'especialidade',
+    component: () => import("../views/especialidade/EspecialidadeView.vue")
+  },
+  {
+    path: '/medico',
+    name: 'medico',
+    component: () => import("../views/medico/MedicoView.vue")
+  },
+  {
+    path: '/paciente',
+    name: 'paciente',
+    component: () => import("../views/paciente/PacienteView.vue")
+  },
+  {
+    path: '/secretaria',
+    name: 'secretaria',
+    component: () => import("../views/secretaria/SecretariaView.vue")
+  },
+  {
+    path: '/agenda',
+    name: 'agenda',
+    component: () => import("../views/agenda/AgendaView.vue")
+  },
+  {
+    path: '/historico',
+    name: 'historico',
+    component: () => import("../views/historico/HistoricoView.vue")
   },
 ]
 
