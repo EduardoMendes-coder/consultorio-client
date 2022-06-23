@@ -5,7 +5,11 @@
  </template>
 
 <script lang="ts">
+import {Vue} from 'vue-class-component';
 
+export default class ConvenioView extends Vue{
+
+}
 </script>
 
 <style scoped>
