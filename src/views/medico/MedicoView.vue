@@ -15,8 +15,8 @@
           <th>Especialidade</th>
           <th>% Participação</th>
           <th>Valor Consulta</th>
-          <th>Email</th>
           <th>Celular</th>
+          <th>Opções</th>
         </tr>
         </thead>
         <tbody>
@@ -27,7 +27,6 @@
           <td>Pediatra</td>
           <td>15</td>
           <td>220,00</td>
-          <td>marcelo-alber2@gmail.com</td>
           <td>(45)99856-2423</td>
         </tr>
         <tr>
@@ -37,7 +36,6 @@
           <td>Cardiologista</td>
           <td>20</td>
           <td>250,00</td>
-          <td>yuutaokkutsu@gmail.com</td>
           <td>(45)99987-4523</td>
         </tr>
         </tbody>
@@ -67,6 +65,9 @@ export default {
 }
 .table{
   width: 91.4%;
+  border-style: solid;
+  border-color: darkgrey;
+  border-width: 1px;
 }
 .btn-cadastrar{
   width: 30%;

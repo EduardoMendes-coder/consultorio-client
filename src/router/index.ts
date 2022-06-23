@@ -20,7 +20,27 @@ const routes: Array<RouteRecordRaw> = [
     path: '/medico',
     name: 'medico',
     component: () => import("../views/medico/MedicoView.vue")
-  }
+  },
+  {
+    path: '/paciente',
+    name: 'paciente',
+    component: () => import("../views/paciente/PacienteView.vue")
+  },
+  {
+    path: '/secretaria',
+    name: 'secretaria',
+    component: () => import("../views/secretaria/SecretariaView.vue")
+  },
+  {
+    path: '/agenda',
+    name: 'agenda',
+    component: () => import("../views/agenda/AgendaView.vue")
+  },
+  {
+    path: '/historico',
+    name: 'historico',
+    component: () => import("../views/historico/HistoricoView.vue")
+  },
 ]
 
 const router = createRouter({

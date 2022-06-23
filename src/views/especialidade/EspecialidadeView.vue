@@ -11,6 +11,7 @@
         <tr>
           <th>Id</th>
           <th>Nome</th>
+          <th>Opções</th>
         </tr>
         </thead>
         <tbody>
@@ -48,7 +49,7 @@ export default {
   margin-top: 60px;
 }
 .table{
-  width: 50%;
+  width: 91.4%;
   border-style: solid;
   border-color: darkgrey;
   border-width: 1px;
