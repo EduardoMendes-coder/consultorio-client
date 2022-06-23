@@ -1,19 +1,72 @@
 <template>
   <div class="container">
-    <h1>Convenio View</h1>
+    <h1 class="titulo" >Lista de Convênios</h1>
+    <div class="control">
+      <input class="input" type="nome-convenios" placeholder="Buscar Convênios">
+      <button class="button btn-cadastrar">Cadastrar</button>
+    </div>
+    <div class="table-convenios">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nome</th>
+          <th>Valor</th>
+          <th>Opções</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th>1</th>
+          <td>Unimed</td>
+          <td>190,00</td>
+        </tr>
+        <tr>
+          <th>2</th>
+          <td>SIS Integrado</td>
+          <td>210,00</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
- </template>
+</template>
 
-<script lang="ts">
-import {Vue} from 'vue-class-component';
-
-export default class ConvenioView extends Vue{
-
+<script>
+export default {
+  name: "convenio"
 }
 </script>
 
-<style scoped>
-  .container{
-    align-items: center;
-  }
+<style lang="scss">
+@import "~bulma/bulma.sass";
+.titulo{
+  font-size: 30px;
+  margin-top: 0px;
+  margin-outside: 10px;
+}
+.input{
+  width: 60%;
+}
+.table-convenios{
+  margin-top: 60px;
+}
+.table{
+  width: 91.4%;
+  border-style: solid;
+  border-color: darkgrey;
+  border-width: 1px;
+}
+.btn-cadastrar{
+  width: 30%;
+  margin-left: 20px;
+  background-color: green;
+  color: white;
+}
+.control{
+  display: flex;
+  margin-top: 20px;
+  width: 100%;
+  flex-direction: row;
+}
 </style>

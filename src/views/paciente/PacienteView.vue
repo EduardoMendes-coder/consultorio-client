@@ -46,7 +46,7 @@
 
 <script>
 export default {
-  name: "medico"
+  name: "paciente"
 }
 </script>
 
