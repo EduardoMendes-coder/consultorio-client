@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="titulo" >Cadastrar Médico</h1>
+    <h1 class="titulo" >Cadastrar Secretária</h1>
     <div class="field">
       <label class="label">Nome</label>
       <div class="control">
@@ -80,23 +80,23 @@
     </div>
 
     <div class="field">
-      <label class="label">CRM</label>
+      <label class="label">Salário</label>
       <div class="control">
-        <input class="input" type="number" placeholder="crm">
+        <input class="input" type="number" placeholder="salário">
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Consultório</label>
+      <label class="label">Data Contratação</label>
       <div class="control">
-        <input class="input" type="text" placeholder="consultorio">
+        <input class="input" type="date" placeholder="consultorio">
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Porcentagem de Participação</label>
+      <label class="label">PIS</label>
       <div class="control">
-        <input class="input" type="number" placeholder="% de participação">
+        <input class="input" type="number" placeholder="pis">
       </div>
     </div>
 
@@ -104,13 +104,6 @@
       <label class="label">Valor Consulta</label>
       <div class="control">
         <input class="input" type="number" placeholder="valor consulta">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">Especialidade</label>
-      <div class="control">
-        <input class="input" type="text" placeholder="especialidade">
       </div>
     </div>
 
@@ -123,7 +116,7 @@
 
 <script>
 export default {
-  name: "FormCadastrarMedico"
+  name: "FormCadastrarSecretaria"
 }
 </script>
 
