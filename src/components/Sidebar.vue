@@ -63,4 +63,8 @@ nav {
   padding: 15px;
   color: white;
 }
+
+.menu-label{
+  font-size: 15px !important;
+}
 </style>
