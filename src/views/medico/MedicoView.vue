@@ -3,7 +3,11 @@
     <h1 class="titulo" >Lista de Médicos</h1>
     <div class="control">
       <input class="input" type="busca-medico" placeholder="Buscar Médico">
-      <button class="button btn-cadastrar">Cadastrar</button>
+
+      <router-link class="link-cad" to="/medico/cadastrar">
+        <button class="btn-cadastrar">Cadastrar</button>
+      </router-link>
+
     </div>
     <div class="table-medicos">
       <table class="table">
@@ -69,11 +73,19 @@ export default {
   border-color: darkgrey;
   border-width: 1px;
 }
-.btn-cadastrar{
+.link-cad{
   width: 30%;
+
+}
+.btn-cadastrar{
+  width: 100%;
+  height: 100%;
   margin-left: 20px;
   background-color: green;
   color: white;
+  border-radius: 5px;
+  border-width: 0px;
+  font-size: 17px;
 }
 .control{
   display: flex;
