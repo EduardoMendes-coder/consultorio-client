@@ -3,7 +3,11 @@
     <h1 class="titulo" >Lista de Convênios</h1>
     <div class="control">
       <input class="input" type="nome-convenios" placeholder="Buscar Convênios">
-      <button class="button btn-cadastrar">Cadastrar</button>
+
+      <router-link class="link-cad" to="/convenio/cadastrar">
+        <button class="button btn-cadastrar">Cadastrar</button>
+      </router-link>
+
     </div>
     <div class="table-convenios">
       <table class="table">
@@ -20,11 +24,21 @@
           <th>1</th>
           <td>Unimed</td>
           <td>190,00</td>
+          <td>
+            <router-link to="/convenio/detalhar">
+              <button class="button is-info">Detalhar</button>
+            </router-link>
+          </td>
         </tr>
         <tr>
           <th>2</th>
           <td>SIS Integrado</td>
           <td>210,00</td>
+          <td>
+            <router-link to="/convenio/detalhar">
+              <button class="button is-info">Detalhar</button>
+            </router-link>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -57,11 +71,19 @@ export default {
   border-color: darkgrey;
   border-width: 1px;
 }
-.btn-cadastrar{
+.link-cad{
   width: 30%;
+
+}
+.btn-cadastrar{
+  width: 100%;
+  height: 100%;
   margin-left: 20px;
   background-color: green;
   color: white;
+  border-radius: 5px;
+  border-width: 0px;
+  font-size: 17px;
 }
 .control{
   display: flex;

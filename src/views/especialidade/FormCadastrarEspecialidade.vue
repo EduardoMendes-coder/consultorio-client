@@ -9,7 +9,9 @@
     </div>
 
     <div class="botoes-form">
-      <button class="button btn-voltar">Voltar</button>
+      <router-link class="link-cad" to="/especialidade">
+        <button class="button btn-voltar">Voltar</button>
+      </router-link>
       <button class="button btn-salvar">Salvar</button>
     </div>
   </div>
@@ -51,9 +53,12 @@ export default {
   color: white;
   width: 40%;
 }
+.link-cad{
+  width: 40%;
+}
 .btn-voltar{
   background-color: red;
   color: white;
-  width: 40%;
+  width: 100%;
 }
 </style>

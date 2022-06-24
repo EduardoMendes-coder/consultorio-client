@@ -3,7 +3,11 @@
     <h1 class="titulo" >Lista de Especialidades</h1>
     <div class="control">
       <input class="input" type="nome-especialidade" placeholder="Buscar Especialidade">
-      <button class="button btn-cadastrar">Cadastrar</button>
+
+      <router-link class="link-cad" to="/especialidade/cadastrar">
+        <button class="button btn-cadastrar">Cadastrar</button>
+      </router-link>
+
     </div>
     <div class="table-especialidade">
       <table class="table">
@@ -18,10 +22,20 @@
         <tr>
           <th>1</th>
           <td>Pediatra</td>
+          <td>
+            <router-link to="/especialidade/detalhar">
+              <button class="button is-info">Detalhar</button>
+            </router-link>
+          </td>
         </tr>
         <tr>
           <th>2</th>
           <td>Cardiologista</td>
+          <td>
+            <router-link to="/especialidade/detalhar">
+              <button class="button is-info">Detalhar</button>
+            </router-link>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -54,11 +68,18 @@ export default {
   border-color: darkgrey;
   border-width: 1px;
 }
-.btn-cadastrar{
+.link-cad{
   width: 30%;
+}
+.btn-cadastrar{
+  width: 100%;
+  height: 100%;
   margin-left: 20px;
   background-color: green;
   color: white;
+  border-radius: 5px;
+  border-width: 0px;
+  font-size: 17px;
 }
 .control{
   display: flex;

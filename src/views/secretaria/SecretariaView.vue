@@ -3,7 +3,11 @@
     <h1 class="titulo" >Lista de Secretárias</h1>
     <div class="control">
       <input class="input" type="busca-secretaria" placeholder="Buscar Secretária">
-      <button class="button btn-cadastrar">Cadastrar</button>
+
+      <router-link class="link-cad" to="/secretaria/cadastrar">
+        <button class="button btn-cadastrar">Cadastrar</button>
+      </router-link>
+
     </div>
     <div class="table-secretarias">
       <table class="table">
@@ -26,6 +30,11 @@
           <td>12/04/2019</td>
           <td>89124823</td>
           <td>(45)99851-2345</td>
+          <td>
+            <router-link to="/secretaria/detalhar">
+              <button class="button is-info">Detalhar</button>
+            </router-link>
+          </td>
         </tr>
         <tr>
           <th>2</th>
@@ -34,6 +43,11 @@
           <td>12/04/2019</td>
           <td>89124823</td>
           <td>(45)99851-2345</td>
+          <td>
+            <router-link to="/secretaria/detalhar">
+              <button class="button is-info">Detalhar</button>
+            </router-link>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -66,11 +80,19 @@ export default {
   border-color: darkgrey;
   border-width: 1px;
 }
-.btn-cadastrar{
+.link-cad{
   width: 30%;
+
+}
+.btn-cadastrar{
+  width: 100%;
+  height: 100%;
   margin-left: 20px;
   background-color: green;
   color: white;
+  border-radius: 5px;
+  border-width: 0px;
+  font-size: 17px;
 }
 .control{
   display: flex;

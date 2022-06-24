@@ -16,7 +16,9 @@
     </div>
 
     <div class="botoes-form">
-      <button class="button btn-voltar">Voltar</button>
+      <router-link class="link-voltar" to="/convenio">
+        <button class="button btn-voltar">Voltar</button>
+      </router-link>
       <button class="button btn-editar">Editar</button>
       <button class="button btn-desativar">Desativar</button>
     </div>
@@ -59,10 +61,13 @@ export default {
   color: white;
   width: 30%;
 }
+.link-voltar{
+  width: 30%;
+}
 .btn-voltar{
   background-color: dimgrey;
   color: white;
-  width: 30%;
+  width: 100%;
 }
 .btn-desativar{
   background-color: red;
