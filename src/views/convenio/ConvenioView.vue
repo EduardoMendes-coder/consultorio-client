@@ -24,11 +24,21 @@
           <th>1</th>
           <td>Unimed</td>
           <td>190,00</td>
+          <td>
+            <router-link to="/convenio/detalhar">
+              <button class="button is-info">Detalhar</button>
+            </router-link>
+          </td>
         </tr>
         <tr>
           <th>2</th>
           <td>SIS Integrado</td>
           <td>210,00</td>
+          <td>
+            <router-link to="/convenio/detalhar">
+              <button class="button is-info">Detalhar</button>
+            </router-link>
+          </td>
         </tr>
         </tbody>
       </table>

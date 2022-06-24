@@ -22,10 +22,20 @@
         <tr>
           <th>1</th>
           <td>Pediatra</td>
+          <td>
+            <router-link to="/especialidade/detalhar">
+              <button class="button is-info">Detalhar</button>
+            </router-link>
+          </td>
         </tr>
         <tr>
           <th>2</th>
           <td>Cardiologista</td>
+          <td>
+            <router-link to="/especialidade/detalhar">
+              <button class="button is-info">Detalhar</button>
+            </router-link>
+          </td>
         </tr>
         </tbody>
       </table>

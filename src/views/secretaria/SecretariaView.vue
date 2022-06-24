@@ -30,6 +30,11 @@
           <td>12/04/2019</td>
           <td>89124823</td>
           <td>(45)99851-2345</td>
+          <td>
+            <router-link to="/secretaria/detalhar">
+              <button class="button is-info">Detalhar</button>
+            </router-link>
+          </td>
         </tr>
         <tr>
           <th>2</th>
@@ -38,6 +43,11 @@
           <td>12/04/2019</td>
           <td>89124823</td>
           <td>(45)99851-2345</td>
+          <td>
+            <router-link to="/secretaria/detalhar">
+              <button class="button is-info">Detalhar</button>
+            </router-link>
+          </td>
         </tr>
         </tbody>
       </table>

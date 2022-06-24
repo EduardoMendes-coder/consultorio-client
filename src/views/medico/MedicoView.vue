@@ -32,6 +32,11 @@
           <td>15</td>
           <td>220,00</td>
           <td>(45)99856-2423</td>
+          <td>
+            <router-link to="/medico/detalhar">
+              <button class="button is-info">Detalhar</button>
+            </router-link>
+          </td>
         </tr>
         <tr>
           <th>2</th>
@@ -41,6 +46,11 @@
           <td>20</td>
           <td>250,00</td>
           <td>(45)99987-4523</td>
+          <td>
+            <router-link to="/medico/detalhar">
+              <button class="button is-info">Detalhar</button>
+            </router-link>
+          </td>
         </tr>
         </tbody>
       </table>

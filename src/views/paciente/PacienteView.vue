@@ -33,7 +33,9 @@
           <td>Unimed</td>
           <td>(45)99856-8742</td>
           <td>
-            <button class="button is-info">Detalhar</button>
+            <router-link to="/paciente/detalhar">
+              <button class="button is-info">Detalhar</button>
+            </router-link>
           </td>
         </tr>
         <tr>
@@ -45,7 +47,9 @@
           <td>Não possui</td>
           <td>(45)99856-4354</td>
           <td>
-            <button class="button is-info">Detalhar</button>
+            <router-link to="/paciente/detalhar">
+              <button class="button is-info">Detalhar</button>
+            </router-link>
           </td>
         </tr>
         </tbody>
