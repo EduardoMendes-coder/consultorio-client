@@ -5,7 +5,7 @@
       <input class="input" type="busca-paciente" placeholder="Buscar Paciente">
 
       <router-link class="link-cad" to="/paciente/cadastrar">
-        <button class="btn-cadastrar">Cadastrar</button>
+        <button class="button btn-cadastrar">Cadastrar</button>
       </router-link>
 
     </div>

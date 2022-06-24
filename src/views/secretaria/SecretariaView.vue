@@ -5,7 +5,7 @@
       <input class="input" type="busca-secretaria" placeholder="Buscar Secretária">
 
       <router-link class="link-cad" to="/secretaria/cadastrar">
-        <button class="btn-cadastrar">Cadastrar</button>
+        <button class="button btn-cadastrar">Cadastrar</button>
       </router-link>
 
     </div>

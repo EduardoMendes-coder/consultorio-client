@@ -5,7 +5,7 @@
       <input class="input" type="nome-convenios" placeholder="Buscar Convênios">
 
       <router-link class="link-cad" to="/convenio/cadastrar">
-        <button class="btn-cadastrar">Cadastrar</button>
+        <button class="button btn-cadastrar">Cadastrar</button>
       </router-link>
 
     </div>
