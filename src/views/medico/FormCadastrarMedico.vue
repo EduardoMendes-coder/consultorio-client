@@ -161,7 +161,7 @@ export default class MedicoForm extends Vue {
     this.medicoClient.cadastrar(this.medico)
         .then(
             success => {
-              this.notification = this.notification.new(true, 'notification is-success', 'Convenio Cadastrado com sucesso!!!')
+              this.notification = this.notification.new(true, 'notification is-success', 'Médico Cadastrado com sucesso!!!')
               this.onClickLimpar()
             }, error => {
               this.notification = this.notification.new(true, 'notification is-danger', 'Error: ' + error)
