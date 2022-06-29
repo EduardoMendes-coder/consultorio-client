@@ -1,39 +1,52 @@
 <template>
-  <div class="container">
-    <h1 class="titulo" >Lista de Especialidades</h1>
-    <div class="control">
-      <input class="input" type="nome-especialidade" placeholder="Buscar Especialidade">
-
-      <router-link class="link-cad" to="/especialidade/cadastrar">
-        <button class="button btn-cadastrar">Cadastrar</button>
-      </router-link>
-
-    </div>
-    <div class="table-especialidade">
-      <table class="table">
-        <thead>
-        <tr>
-          <th style="background-color: mediumpurple;">Id</th>
-          <th style="background-color: mediumpurple;">Nome</th>
-          <th style="background-color: mediumpurple;">Opções</th>
-        </tr>
-        </thead>
-        <tbody>
-          <tr v-for="item in especialidadeList" :key="item.id">
-            <th>{{ item.id }}</th>
-
-            <th>
-              <span v-if="item.ativo" class="tag is-success"> Ativo </span>
-              <span v-if="!item.ativo" class="tag is-danger"> Inativo </span>
-            </th>
-
-            <th>{{ item.nome }}</th>
-            <th> <button class="button is-small is-warning"> Detalhar </button> </th>
-          </tr>
-        </tbody>
-      </table>
+  <div class="columns">
+    <div class="column is-12 is-size-3">
+      Lista de Especialidades
     </div>
   </div>
+
+  <hr />
+
+  <div class="columns">
+    <div class="column is-9">
+      <input class="input" type="filtro" placeholder="Nome da Especialidade">
+    </div>
+    <div class="column is-2">
+      <router-link class="link-cad" to="/especialidade/cadastrar">
+        <button style="background-color: green; color: white" class="button btn-cadastrar">Cadastrar</button>
+      </router-link>
+    </div>
+  </div>
+
+  <hr />
+
+  <table class="table table is-fullwidth">
+    <thead class="green">
+    <tr style="background-color: mediumpurple">
+      <th style="color: #fff;">ID</th>
+      <th style="color: #fff;">Ativo</th>
+      <th style="color: #fff;">Especialidade</th>
+      <th style="color: #fff;">Opções</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-for="item in especialidadeList" :key="item.id">
+      <th>{{ item.id }}</th>
+
+      <th>
+        <span v-if="item.ativo" class="tag is-success"> Ativo </span>
+        <span v-if="!item.ativo" class="tag is-danger"> Inativo </span>
+      </th>
+
+      <th>{{ item.nome }}</th>
+      <th>
+        <router-link class="link-cad" to="/especialidade/detalhar">
+          <button style="background-color: dodgerblue; color: white" class="button btn-detalhar">Detalhar</button>
+        </router-link>
+      </th>
+    </tr>
+    </tbody>
+  </table>
 </template>
 
 <script  lang="ts">
@@ -66,40 +79,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-@import "~bulma/bulma.sass";
-.titulo{
-  font-size: 30px;
-  margin-top: 0px;
-  margin-outside: 10px;
-}
-.input{
-  width: 60%;
-}
-.table-especialidade{
-  margin-top: 60px;
-}
-.table{
-  width: 91.4%;
-}
-.link-cad{
-  width: 30%;
-}
-.btn-cadastrar{
-  width: 100%;
-  height: 100%;
-  margin-left: 20px;
-  background-color: green;
-  color: white;
-  border-radius: 5px;
-  border-width: 0px;
-  font-size: 17px;
-}
-.control{
-  display: flex;
-  margin-top: 20px;
-  width: 100%;
-  flex-direction: row;
-}
-</style>
