@@ -34,7 +34,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr v-for="item in pacienteList" :key="item.id">
+    <tr v-for="item in secretariaList" :key="item.id">
       <th>{{ item.id }}</th>
 
       <th>

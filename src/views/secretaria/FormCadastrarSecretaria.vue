@@ -108,7 +108,7 @@
     <div class="field">
       <label class="label">Data de Contratação</label>
       <div class="control">
-        <input class="input" type="date" v-model="secretaria.dataContratacao" placeholder="data de contratação">
+        <input class="input" type="datetime-local" v-model="secretaria.dataContratacao" placeholder="data de contratação">
       </div>
     </div>
 
@@ -149,7 +149,7 @@ export default class SecretariaForm extends Vue {
     this.secretariaClient.cadastrar(this.secretaria)
         .then(
             success => {
-              this.notification = this.notification.new(true, 'notification is-success', 'Convenio Cadastrado com sucesso!!!')
+              this.notification = this.notification.new(true, 'notification is-success', 'Secretário(a) Cadastrado com sucesso!!!')
               this.onClickLimpar()
             }, error => {
               this.notification = this.notification.new(true, 'notification is-danger', 'Error: ' + error)

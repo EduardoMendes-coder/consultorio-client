@@ -119,7 +119,7 @@
     <div class="field">
       <label class="label">Data Vencimento</label>
       <div class="control">
-        <input class="input" type="date" v-model="paciente.dataVencimento" placeholder="data vencimento">
+        <input class="input" type="datetime-local" v-model="paciente.dataVencimento" placeholder="data vencimento">
       </div>
     </div>
 
@@ -158,7 +158,7 @@ export default class PacienteForm extends Vue {
     this.pacienteClient.cadastrar(this.paciente)
         .then(
             success => {
-              this.notification = this.notification.new(true, 'notification is-success', 'Convenio Cadastrado com sucesso!!!')
+              this.notification = this.notification.new(true, 'notification is-success', 'Paciente Cadastrado com sucesso!!!')
               this.onClickLimpar()
             }, error => {
               this.notification = this.notification.new(true, 'notification is-danger', 'Error: ' + error)
