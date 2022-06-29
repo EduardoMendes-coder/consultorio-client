@@ -39,11 +39,16 @@
     </div>
   </div>
 
-  <div class="botoes-form">
-    <router-link class="link-cad" to="/convenio">
-      <button class="button btn-voltar">Voltar</button>
-    </router-link>
-    <button class="button btn-salvar"  @click="onClickCadastrar()">Salvar</button>
+  <div class="columns">
+    <div class="column is-8"></div>
+    <div class="column is-2">
+      <router-link class="link-cad" to="/convenio">
+        <button class="button is-danger btn-voltar">Voltar</button>
+      </router-link>
+    </div>
+    <div class="column is-2">
+      <button class="button is-fullwidth is-success" @click="onClickCadastrar()">Salvar</button>
+    </div>
   </div>
 
 </template>
@@ -82,3 +87,11 @@
     }
   }
 </script>
+
+<style lang="scss">
+  .btn-voltar{
+    width: 100%;
+  }
+</style>
+
+

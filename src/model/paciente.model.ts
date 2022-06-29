@@ -7,4 +7,9 @@ export class Paciente extends Pessoa {
     numeroCartaoConvenio! : string
     dataVencimento! : Date
     convenio! : Convenio
+
+    constructor() {
+        super()
+        this.ativo = true
+    }
 }
