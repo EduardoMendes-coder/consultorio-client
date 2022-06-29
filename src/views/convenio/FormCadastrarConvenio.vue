@@ -1,71 +1,97 @@
 <template>
-  <div class="container">
-    <h1 class="titulo" >Cadastrar Convênio</h1>
-    <div class="field">
-      <label class="label">Nome</label>
-      <div class="control">
-        <input class="input" type="text" placeholder="nome">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">Valor</label>
-      <div class="control">
-        <input class="input" type="number" placeholder="valor">
-      </div>
-    </div>
-
-    <div class="botoes-form">
-      <router-link class="link-cad" to="/convenio">
-        <button class="button btn-voltar">Voltar</button>
-      </router-link>
-      <button class="button btn-salvar">Salvar</button>
+  <div class="columns">
+    <div class="column is-12 is-size-3">
+      Cadastrar Especialidade
     </div>
   </div>
+
+  <hr />
+
+  <div class="columns" v-if="notification.ativo">
+    <div class="column is-12">
+      <div :class="notification.classe">
+        <button @click="onClickFecharNotificacao()" class="delete" ></button>
+        {{ notification.mensagem }}
+      </div>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column is-12 is-size-3">
+      <label class="label">
+        <input v-model="convenio.ativo" checked type="checkbox">
+        Ativar Convênio
+      </label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Nome</label>
+    <div class="control">
+      <input class="input is-primary" type="text" v-model="convenio.nome" placeholder="Nome do Convênio">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Valor</label>
+    <div class="control">
+      <input class="input is-primary" type="number" v-model="convenio.valor" placeholder="Valor do Convênio">
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="column is-8"></div>
+    <div class="column is-2">
+      <router-link class="link-cad" to="/convenio">
+        <button class="button is-danger btn-voltar">Voltar</button>
+      </router-link>
+    </div>
+    <div class="column is-2">
+      <button class="button is-fullwidth is-success" @click="onClickCadastrar()">Salvar</button>
+    </div>
+  </div>
+
 </template>
 
-<script>
-export default {
-  name: "FormCadastrarConvenio"
-}
+<script lang="ts">
+  import { Vue } from 'vue-class-component';
+  import { Convenio } from '@/model/convenio.model'
+  import { Notification } from '@/model/notification'
+  import { ConvenioClient } from '@/client/convenio.client'
+
+  export default class ConvenioForm extends Vue {
+    private convenioClient!: ConvenioClient
+    private convenio : Convenio = new Convenio()
+    private notification : Notification = new Notification()
+
+    public mounted(): void {
+      this.convenioClient = new ConvenioClient()
+    }
+
+    private onClickCadastrar(): void {
+      this.convenioClient.cadastrar(this.convenio)
+          .then(
+              success => {
+                this.notification = this.notification.new(true, 'notification is-success', 'Convenio Cadastrado com sucesso!!!')
+                this.onClickLimpar()
+              }, error => {
+                this.notification = this.notification.new(true, 'notification is-danger', 'Error: ' + error)
+                this.onClickLimpar()
+              })
+    }
+    private onClickFecharNotificacao(): void {
+      this.notification = new Notification()
+    }
+    private onClickLimpar(): void {
+      this.convenio = new Convenio()
+    }
+  }
 </script>
 
 <style lang="scss">
-@import "~bulma/bulma.sass";
-.container{
-  margin-left: 30px;
-  width: 80%;
-}
-.titulo{
-  display: flex;
-  justify-content: center;
-  font-size: 30px;
-}
-.enums{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  margin-block-end: 20px;
-}
-.botoes-form{
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  width: 100%;
-  margin-top: 20px;
-  margin-block-end: 20px;
-}
-.btn-salvar{
-  background-color: green;
-  color: white;
-  width: 40%;
-}
-.link-cad{
-  width: 40%;
-}
-.btn-voltar{
-  background-color: red;
-  color: white;
-  width: 100%;
-}
+  .btn-voltar{
+    width: 100%;
+  }
 </style>
+
+

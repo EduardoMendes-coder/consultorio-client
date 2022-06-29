@@ -1,66 +1,85 @@
 <template>
   <div class="container">
     <h1 class="titulo" >Cadastrar Paciente</h1>
+
+    <div class="columns" v-if="notification.ativo">
+      <div class="column is-12">
+        <div :class="notification.classe">
+          <button @click="onClickFecharNotificacao()" class="delete" ></button>
+          {{ notification.mensagem }}
+        </div>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column is-12 is-size-3">
+        <label class="label">
+          <input v-model="paciente.ativo" checked type="checkbox">
+          Ativar Convênio
+        </label>
+      </div>
+    </div>
+
     <div class="field">
       <label class="label">Nome</label>
       <div class="control">
-        <input class="input" type="text" placeholder="nome">
+        <input class="input" type="text" v-model="paciente.nome" placeholder="nome">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Telefone</label>
       <div class="control">
-        <input class="input" type="number" placeholder="telefone">
+        <input class="input" type="number" v-model="paciente.telefone" placeholder="telefone">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Celular</label>
       <div class="control">
-        <input class="input" type="number" placeholder="celular">
+        <input class="input" type="number" v-model="paciente.celular" placeholder="celular">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Nacionalidade</label>
       <div class="control">
-        <input class="input" type="text" placeholder="nacionalidade">
+        <input class="input" type="text" v-model="paciente.nacionalidade" placeholder="nacionalidade">
       </div>
     </div>
 
     <div class="field">
       <label class="label">CPF</label>
       <div class="control">
-        <input class="input" type="number" placeholder="cpf">
+        <input class="input" type="number" v-model="paciente.cpf" placeholder="cpf">
       </div>
     </div>
 
     <div class="field">
       <label class="label">RG</label>
       <div class="control">
-        <input class="input" type="number" placeholder="rg">
+        <input class="input" type="number" v-model="paciente.rg" placeholder="rg">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Email</label>
       <div class="control">
-        <input class="input" type="email" placeholder="e-mail">
+        <input class="input" type="email" v-model="paciente.email" placeholder="e-mail">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Login</label>
       <div class="control">
-        <input class="input" type="text" placeholder="login">
+        <input class="input" type="text" v-model="paciente.login" placeholder="login">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Senha</label>
       <div class="control">
-        <input class="input" type="password" placeholder="senha">
+        <input class="input" type="password" v-model="paciente.senha" placeholder="senha">
       </div>
     </div>
 
@@ -69,10 +88,10 @@
         <label class="label">Sexo</label>
         <div class="control">
           <div class="select">
-            <select>
-              <option>Masculino</option>
-              <option>Feminino</option>
-              <option>Outro</option>
+            <select v-model="paciente.sexo">
+              <option>masculino</option>
+              <option>feminino</option>
+              <option>outro</option>
             </select>
           </div>
         </div>
@@ -81,9 +100,9 @@
         <label class="label">Tipo Atendimento</label>
         <div class="control">
           <div class="select">
-            <select>
-              <option>Convênio</option>
-              <option>Particular</option>
+            <select v-model="paciente.tipoAtendimento">
+              <option>convenio</option>
+              <option>particular</option>
             </select>
           </div>
         </div>
@@ -93,21 +112,21 @@
     <div class="field">
       <label class="label">N° Cartão Convênio</label>
       <div class="control">
-        <input class="input" type="number" placeholder="n° cartão convênio">
+        <input class="input" type="number" v-model="paciente.numeroCartaoConvenio" placeholder="n° cartão convênio">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Data Vencimento</label>
       <div class="control">
-        <input class="input" type="date" placeholder="data vencimento">
+        <input class="input" type="date" v-model="paciente.dataVencimento" placeholder="data vencimento">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Convênio</label>
       <div class="control">
-        <input class="input" type="text" placeholder="convênio">
+        <input class="input" type="text" v-model="paciente.convenio" placeholder="convênio">
       </div>
     </div>
 
@@ -115,14 +134,43 @@
       <router-link class="link-cad" to="/paciente">
         <button class="button btn-voltar">Voltar</button>
       </router-link>
-      <button class="button btn-salvar">Salvar</button>
+      <button class="button btn-salvar" @click="onClickCadastrar()">Salvar</button>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "FormCadastrarPaciente"
+<script lang="ts">
+import { Vue } from 'vue-class-component';
+import { Paciente } from '@/model/paciente.model'
+import { Notification } from '@/model/notification'
+import { PacienteClient } from '@/client/paciente.client'
+
+export default class PacienteForm extends Vue {
+  private pacienteClient!: PacienteClient
+  private paciente : Paciente = new Paciente()
+  private notification : Notification = new Notification()
+
+  public mounted(): void {
+    this.pacienteClient = new PacienteClient()
+  }
+
+  private onClickCadastrar(): void {
+    this.pacienteClient.cadastrar(this.paciente)
+        .then(
+            success => {
+              this.notification = this.notification.new(true, 'notification is-success', 'Convenio Cadastrado com sucesso!!!')
+              this.onClickLimpar()
+            }, error => {
+              this.notification = this.notification.new(true, 'notification is-danger', 'Error: ' + error)
+              this.onClickLimpar()
+            })
+  }
+  private onClickFecharNotificacao(): void {
+    this.notification = new Notification()
+  }
+  private onClickLimpar(): void {
+    this.paciente = new Paciente()
+  }
 }
 </script>
 

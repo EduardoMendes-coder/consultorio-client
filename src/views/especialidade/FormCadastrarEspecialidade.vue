@@ -39,10 +39,12 @@
   <div class="columns">
     <div class="column is-8"></div>
     <div class="column is-2">
-      <a href="/especialidade/listar" class="button is-fullwidth is-info">Voltar</a>
+      <router-link class="link-cad" to="/especialidade">
+        <button class="button is-danger btn-voltar">Voltar</button>
+      </router-link>
     </div>
     <div class="column is-2">
-      <button class="button is-fullwidth is-success" @click="onClickCadastrar()">Success</button>
+      <button class="button is-fullwidth is-success" @click="onClickCadastrar()">Salvar</button>
     </div>
   </div>
 </template>
@@ -83,41 +85,8 @@
 </script>
 
 <style lang="scss">
-@import "~bulma/bulma.sass";
-.container{
-  margin-left: 30px;
-  width: 80%;
-}
-.titulo{
-  display: flex;
-  justify-content: center;
-  font-size: 30px;
-}
-.enums{
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  margin-block-end: 20px;
-}
-.botoes-form{
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  width: 100%;
-  margin-top: 20px;
-  margin-block-end: 20px;
-}
-.btn-salvar{
-  background-color: green;
-  color: white;
-  width: 40%;
-}
-.link-cad{
-  width: 40%;
-}
-.btn-voltar{
-  background-color: red;
-  color: white;
-  width: 100%;
-}
+  .btn-voltar{
+    width: 100%;
+  }
 </style>
+
