@@ -19,34 +19,52 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <th>1</th>
-          <td>Pediatra</td>
-          <td>
-            <router-link to="/especialidade/detalhar">
-              <button class="button is-info">Detalhar</button>
-            </router-link>
-          </td>
-        </tr>
-        <tr>
-          <th>2</th>
-          <td>Cardiologista</td>
-          <td>
-            <router-link to="/especialidade/detalhar">
-              <button class="button is-info">Detalhar</button>
-            </router-link>
-          </td>
-        </tr>
+          <tr v-for="item in especialidadeList" :key="item.id">
+            <th>{{ item.id }}</th>
+
+            <th>
+              <span v-if="item.ativo" class="tag is-success"> Ativo </span>
+              <span v-if="!item.ativo" class="tag is-danger"> Inativo </span>
+            </th>
+
+            <th>{{ item.nome }}</th>
+            <th> <button class="button is-small is-warning"> Detalhar </button> </th>
+          </tr>
         </tbody>
       </table>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "especialidade"
-}
+<script  lang="ts">
+  import { Vue } from 'vue-class-component';
+
+  import { PageRequest } from '@/model/page/page-request'
+  import { PageResponse } from '@/model/page/page-response'
+
+  import { Especialidade } from '@/model/especialidade.model'
+  import { EspecialidadeClient } from '@/client/especialidade.client'
+
+  export default class EspecialidadeList extends Vue {
+    private pageRequest: PageRequest = new PageRequest()
+    private pageResponse: PageResponse<Especialidade> = new PageResponse()
+    private especialidadeList: Especialidade[] = []
+    private especialidadeClient!: EspecialidadeClient
+    public mounted(): void {
+      this.especialidadeClient = new EspecialidadeClient()
+      this.listarEspecialidade()
+    }
+    private listarEspecialidade(): void {
+      this.especialidadeClient.findByFiltrosPaginado(this.pageRequest)
+          .then(
+              success => {
+                this.pageResponse = success
+                this.especialidadeList = this.pageResponse.content
+              },
+              error => console.log(error)
+          )
+    }
+  }
 </script>
 
 <style lang="scss">
