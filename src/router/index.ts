@@ -9,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/convenio',
     name: 'convenio',
-    component: () => import("../views/convenio/ConvenioView.vue")
+    component: () => import("../views/convenio/ConvenioList.vue")
   },
   {
     path: '/convenio/cadastrar',
@@ -24,7 +24,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/especialidade',
     name: 'especialidade',
-    component: () => import("../views/especialidade/EspecialidadeView.vue")
+    component: () => import("../views/especialidade/EspecialidadeList.vue")
   },
   {
     path: '/especialidade/cadastrar',
@@ -39,7 +39,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/medico',
     name: 'medico',
-    component: () => import("../views/medico/MedicoView.vue")
+    component: () => import("../views/medico/MedicoList.vue")
   },
   {
     path: '/medico/cadastrar',
@@ -54,7 +54,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/paciente',
     name: 'paciente',
-    component: () => import("../views/paciente/PacienteView.vue")
+    component: () => import("../views/paciente/PacienteList.vue")
   },
   {
     path: '/paciente/cadastrar',
@@ -69,7 +69,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/secretaria',
     name: 'secretaria',
-    component: () => import("../views/secretaria/SecretariaView.vue")
+    component: () => import("../views/secretaria/SecretariaList.vue")
   },
   {
     path: '/secretaria/cadastrar',

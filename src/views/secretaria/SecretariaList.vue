@@ -13,13 +13,13 @@
       <table class="table">
         <thead>
         <tr>
-          <th>Id</th>
-          <th>Nome</th>
-          <th>Salário</th>
-          <th>Data Contratação</th>
-          <th>PIS</th>
-          <th>Celular</th>
-          <th>Opções</th>
+          <th style="background-color: mediumpurple;">Id</th>
+          <th style="background-color: mediumpurple;">Nome</th>
+          <th style="background-color: mediumpurple;">Salário</th>
+          <th style="background-color: mediumpurple;">Data Contratação</th>
+          <th style="background-color: mediumpurple;">PIS</th>
+          <th style="background-color: mediumpurple;">Celular</th>
+          <th style="background-color: mediumpurple;">Opções</th>
         </tr>
         </thead>
         <tbody>
@@ -76,13 +76,9 @@ export default {
 }
 .table{
   width: 91.4%;
-  border-style: solid;
-  border-color: darkgrey;
-  border-width: 1px;
 }
 .link-cad{
   width: 30%;
-
 }
 .btn-cadastrar{
   width: 100%;
