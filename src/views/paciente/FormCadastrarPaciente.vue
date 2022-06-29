@@ -15,7 +15,7 @@
       <div class="column is-12 is-size-3">
         <label class="label">
           <input v-model="paciente.ativo" checked type="checkbox">
-          Ativar Convênio
+          Ativar Paciente
         </label>
       </div>
     </div>

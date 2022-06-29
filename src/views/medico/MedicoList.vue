@@ -1,102 +1,89 @@
 <template>
-  <div class="container">
-    <h1 class="titulo" >Lista de Médicos</h1>
-    <div class="control">
-      <input class="input" type="busca-medico" placeholder="Buscar Médico">
-
-      <router-link class="link-cad" to="/medico/cadastrar">
-        <button class="button btn-cadastrar">Cadastrar</button>
-      </router-link>
-
-    </div>
-    <div class="table-medicos">
-      <table class="table">
-        <thead>
-        <tr>
-          <th style="background-color: mediumpurple;">Id</th>
-          <th style="background-color: mediumpurple;">Nome</th>
-          <th style="background-color: mediumpurple;">CRM</th>
-          <th style="background-color: mediumpurple;">Especialidade</th>
-          <th style="background-color: mediumpurple;">% Participação</th>
-          <th style="background-color: mediumpurple;">Valor Consulta</th>
-          <th style="background-color: mediumpurple;">Celular</th>
-          <th style="background-color: mediumpurple;">Opções</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <th>1</th>
-          <td>Marcelo Alber</td>
-          <td>38124587</td>
-          <td>Pediatra</td>
-          <td>15</td>
-          <td>220,00</td>
-          <td>(45)99856-2423</td>
-          <td>
-            <router-link to="/medico/detalhar">
-              <button class="button is-info">Detalhar</button>
-            </router-link>
-          </td>
-        </tr>
-        <tr>
-          <th>2</th>
-          <td>Yuuta Okkutsu</td>
-          <td>45547854</td>
-          <td>Cardiologista</td>
-          <td>20</td>
-          <td>250,00</td>
-          <td>(45)99987-4523</td>
-          <td>
-            <router-link to="/medico/detalhar">
-              <button class="button is-info">Detalhar</button>
-            </router-link>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+  <div class="columns">
+    <div class="column is-12 is-size-3">
+      Lista de Médicos
     </div>
   </div>
+
+  <hr />
+
+  <div class="columns">
+    <div class="column is-9">
+      <input class="input" type="filtro" placeholder="Nome do Médico">
+    </div>
+    <div class="column is-2">
+      <router-link class="link-cad" to="/medico/cadastrar">
+        <button class="button btn-cadastrar" style="background-color: green; color: white">Cadastrar</button>
+      </router-link>
+    </div>
+  </div>
+
+  <hr />
+
+  <table class="table table is-fullwidth">
+    <thead class="green">
+    <tr style="background-color: mediumpurple">
+      <th style="color: #fff;">ID</th>
+      <th style="color: #fff;">Ativo</th>
+      <th style="color: #fff;">Nome</th>
+      <th style="color: #fff;">CRM</th>
+      <th style="color: #fff;">Celular</th>
+      <th style="color: #fff;">Valor da Consulta</th>
+      <th style="color: #fff;">Especialidade</th>
+      <th style="color: #fff;">Opções</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-for="item in medicoList" :key="item.id">
+      <th>{{ item.id }}</th>
+
+      <th>
+        <span v-if="item.ativo" class="tag is-success"> Ativo </span>
+        <span v-if="!item.ativo" class="tag is-danger"> Inativo </span>
+      </th>
+
+      <th>{{ item.nome }}</th>
+      <th>{{ item.crm }}</th>
+      <th>{{ item.celular }}</th>
+      <th>{{ item.valorConsulta }}</th>
+      <th>{{ item.especialidade }}</th>
+      <th>
+        <router-link class="link-cad" to="/medico/detalhar">
+          <button style="background-color: dodgerblue; color: white" class="button btn-detalhar">Detalhar</button>
+        </router-link>
+      </th>
+    </tr>
+    </tbody>
+  </table>
 </template>
 
-<script>
-export default {
-  name: "medico"
+<script lang="ts">
+import { Vue } from 'vue-class-component';
+
+import { PageRequest } from '@/model/page/page-request'
+import { PageResponse } from '@/model/page/page-response'
+
+import { Medico } from '@/model/medico.model'
+import { MedicoClient } from '@/client/medico.client'
+
+export default class MedicoList extends Vue {
+  private pageRequest: PageRequest = new PageRequest()
+  private pageResponse: PageResponse<Medico> = new PageResponse()
+  private medicoList: Medico[] = []
+  private medicoClient!: MedicoClient
+  public mounted(): void {
+    this.medicoClient = new MedicoClient()
+    this.listarMedico()
+  }
+  private listarMedico(): void {
+    this.medicoClient.findByFiltrosPaginado(this.pageRequest)
+        .then(
+            success => {
+              this.pageResponse = success
+              this.medicoList = this.pageResponse.content
+            },
+            error => console.log(error)
+        )
+  }
 }
 </script>
-
-<style lang="scss">
-@import "~bulma/bulma.sass";
-.titulo{
-  font-size: 30px;
-  margin-top: 0px;
-  margin-outside: 10px;
-}
-.input{
-  width: 60%;
-}
-.table-medicos{
-  margin-top: 60px;
-}
-.table{
-  width: 91.4%;
-}
-.link-cad{
-  width: 30%;
-}
-.btn-cadastrar{
-  width: 100%;
-  height: 100%;
-  margin-left: 20px;
-  background-color: green;
-  color: white;
-  border-radius: 5px;
-  border-width: 0px;
-  font-size: 17px;
-}
-.control{
-  display: flex;
-  margin-top: 20px;
-  width: 100%;
-  flex-direction: row;
-}
-</style>
