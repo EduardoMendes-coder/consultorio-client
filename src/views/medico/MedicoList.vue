@@ -13,14 +13,14 @@
       <table class="table">
         <thead>
         <tr>
-          <th>Id</th>
-          <th>Nome</th>
-          <th>CRM</th>
-          <th>Especialidade</th>
-          <th>% Participação</th>
-          <th>Valor Consulta</th>
-          <th>Celular</th>
-          <th>Opções</th>
+          <th style="background-color: mediumpurple;">Id</th>
+          <th style="background-color: mediumpurple;">Nome</th>
+          <th style="background-color: mediumpurple;">CRM</th>
+          <th style="background-color: mediumpurple;">Especialidade</th>
+          <th style="background-color: mediumpurple;">% Participação</th>
+          <th style="background-color: mediumpurple;">Valor Consulta</th>
+          <th style="background-color: mediumpurple;">Celular</th>
+          <th style="background-color: mediumpurple;">Opções</th>
         </tr>
         </thead>
         <tbody>
@@ -79,13 +79,9 @@ export default {
 }
 .table{
   width: 91.4%;
-  border-style: solid;
-  border-color: darkgrey;
-  border-width: 1px;
 }
 .link-cad{
   width: 30%;
-
 }
 .btn-cadastrar{
   width: 100%;
