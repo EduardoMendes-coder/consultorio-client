@@ -1,99 +1,91 @@
 <template>
-  <div class="container">
-    <h1 class="titulo" >Lista de Secretárias</h1>
-    <div class="control">
-      <input class="input" type="busca-secretaria" placeholder="Buscar Secretária">
-
-      <router-link class="link-cad" to="/secretaria/cadastrar">
-        <button class="button btn-cadastrar">Cadastrar</button>
-      </router-link>
-
-    </div>
-    <div class="table-secretarias">
-      <table class="table">
-        <thead>
-        <tr>
-          <th style="background-color: mediumpurple;">Id</th>
-          <th style="background-color: mediumpurple;">Nome</th>
-          <th style="background-color: mediumpurple;">Salário</th>
-          <th style="background-color: mediumpurple;">Data Contratação</th>
-          <th style="background-color: mediumpurple;">PIS</th>
-          <th style="background-color: mediumpurple;">Celular</th>
-          <th style="background-color: mediumpurple;">Opções</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <th>1</th>
-          <td>Lia okkutsa</td>
-          <td>2800,00</td>
-          <td>12/04/2019</td>
-          <td>89124823</td>
-          <td>(45)99851-2345</td>
-          <td>
-            <router-link to="/secretaria/detalhar">
-              <button class="button is-info">Detalhar</button>
-            </router-link>
-          </td>
-        </tr>
-        <tr>
-          <th>2</th>
-          <td>Raze bombinho</td>
-          <td>2800,00</td>
-          <td>12/04/2019</td>
-          <td>89124823</td>
-          <td>(45)99851-2345</td>
-          <td>
-            <router-link to="/secretaria/detalhar">
-              <button class="button is-info">Detalhar</button>
-            </router-link>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+  <div class="columns">
+    <div class="column is-12 is-size-3">
+      Lista de Secretárias
     </div>
   </div>
+
+  <hr />
+
+  <div class="columns">
+    <div class="column is-9">
+      <input class="input" type="filtro" placeholder="Nome da Secretária">
+    </div>
+    <div class="column is-2">
+      <router-link class="link-cad" to="/secretaria/cadastrar">
+        <button class="button btn-cadastrar" style="background-color: green; color: white">Cadastrar</button>
+      </router-link>
+    </div>
+  </div>
+
+  <hr />
+
+  <table class="table table is-fullwidth">
+    <thead class="green">
+    <tr style="background-color: mediumpurple">
+      <th style="color: #fff;">ID</th>
+      <th style="color: #fff;">Ativo</th>
+      <th style="color: #fff;">Nome</th>
+      <th style="color: #fff;">PIS</th>
+      <th style="color: #fff;">Salário</th>
+      <th style="color: #fff;">Data de Contratação</th>
+      <th style="color: #fff;">Celular</th>
+      <th style="color: #fff;">Opções</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-for="item in pacienteList" :key="item.id">
+      <th>{{ item.id }}</th>
+
+      <th>
+        <span v-if="item.ativo" class="tag is-success"> Ativo </span>
+        <span v-if="!item.ativo" class="tag is-danger"> Inativo </span>
+      </th>
+
+      <th>{{ item.nome }}</th>
+      <th>{{ item.pis }}</th>
+      <th>{{ item.salario }}</th>
+      <th>{{ item.dataContratacao }}</th>
+      <th>{{ item.celular }}</th>
+      <th>
+        <router-link class="link-cad" to="/secretaria/detalhar">
+          <button style="background-color: dodgerblue; color: white" class="button btn-detalhar">Detalhar</button>
+        </router-link>
+      </th>
+    </tr>
+    </tbody>
+  </table>
 </template>
 
-<script>
-export default {
-  name: "secretaria"
+<script lang="ts">
+import { Vue } from 'vue-class-component';
+
+import { PageRequest } from '@/model/page/page-request'
+import { PageResponse } from '@/model/page/page-response'
+
+import { Paciente } from '@/model/paciente.model'
+import { PacienteClient } from '@/client/paciente.client'
+import {Secretaria} from "@/model/secretaria.model";
+import {SecretariaClient} from "@/client/secretaria.client";
+
+export default class SecretariaList extends Vue {
+  private pageRequest: PageRequest = new PageRequest()
+  private pageResponse: PageResponse<Secretaria> = new PageResponse()
+  private secretariaList: Secretaria[] = []
+  private secretariaClient!: SecretariaClient
+  public mounted(): void {
+    this.secretariaClient = new SecretariaClient()
+    this.listarSecretaria()
+  }
+  private listarSecretaria(): void {
+    this.secretariaClient.findByFiltrosPaginado(this.pageRequest)
+        .then(
+            success => {
+              this.pageResponse = success
+              this.secretariaList = this.pageResponse.content
+            },
+            error => console.log(error)
+        )
+  }
 }
 </script>
-
-<style lang="scss">
-@import "~bulma/bulma.sass";
-.titulo{
-  font-size: 30px;
-  margin-top: 0px;
-  margin-outside: 10px;
-}
-.input{
-  width: 60%;
-}
-.table-secretarias{
-  margin-top: 60px;
-}
-.table{
-  width: 91.4%;
-}
-.link-cad{
-  width: 30%;
-}
-.btn-cadastrar{
-  width: 100%;
-  height: 100%;
-  margin-left: 20px;
-  background-color: green;
-  color: white;
-  border-radius: 5px;
-  border-width: 0px;
-  font-size: 17px;
-}
-.control{
-  display: flex;
-  margin-top: 20px;
-  width: 100%;
-  flex-direction: row;
-}
-</style>
