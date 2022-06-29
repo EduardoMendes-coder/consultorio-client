@@ -46,7 +46,7 @@
       <th>{{ item.crm }}</th>
       <th>{{ item.celular }}</th>
       <th>{{ item.valorConsulta }}</th>
-      <th>{{ item.especialidade }}</th>
+      <th>{{ item.especialidade.nome }}</th>
       <th>
         <router-link class="link-cad" to="/medico/detalhar">
           <button style="background-color: dodgerblue; color: white" class="button btn-detalhar">Detalhar</button>
