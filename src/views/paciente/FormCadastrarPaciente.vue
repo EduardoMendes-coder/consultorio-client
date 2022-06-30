@@ -20,12 +20,14 @@
       </div>
     </div>
 
+
     <div class="field">
       <label class="label">Nome</label>
       <div class="control">
         <input class="input" type="text" v-model="paciente.nome" placeholder="nome">
       </div>
     </div>
+
 
     <div class="field">
       <label class="label">Telefone</label>
