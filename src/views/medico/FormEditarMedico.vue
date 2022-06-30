@@ -27,109 +27,129 @@
       </div>
     </div>
 
-    <div class="field">
-      <label class="label">Telefone</label>
-      <div class="control">
-        <input class="input" type="number" v-model="medico.telefone" placeholder="telefone">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">Celular</label>
-      <div class="control">
-        <input class="input" type="number" v-model="medico.celular" placeholder="celular">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">Nacionalidade</label>
-      <div class="control">
-        <input class="input" type="text" v-model="medico.nacionalidade" placeholder="nacionalidade">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">CPF</label>
-      <div class="control">
-        <input class="input" type="number" v-model="medico.cpf" placeholder="cpf">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">RG</label>
-      <div class="control">
-        <input class="input" type="number" v-model="medico.rg" placeholder="rg">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">Email</label>
-      <div class="control">
-        <input class="input" type="email" v-model="medico.email" placeholder="e-mail">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">Login</label>
-      <div class="control">
-        <input class="input" type="text" v-model="medico.login" placeholder="login">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">Senha</label>
-      <div class="control">
-        <input class="input" type="password" v-model="medico.senha" placeholder="senha">
-      </div>
-    </div>
-
-    <div class="enums">
-      <div class="enum-sexo">
-        <label class="label">Sexo</label>
+    <div class="divisoes contato">
+      <div class="column is-4 is-size-4">
+        <label class="label">Telefone</label>
         <div class="control">
-          <div class="select">
-            <select v-model="medico.sexo">
-              <option>masculino</option>
-              <option>feminino</option>
-              <option>outro</option>
-            </select>
+          <input class="input" type="number" v-model="medico.telefone" placeholder="telefone">
+        </div>
+      </div>
+
+      <div class="column is-4 is-size-4">
+        <label class="label">Celular</label>
+        <div class="control">
+          <input class="input" type="number" v-model="medico.celular" placeholder="celular">
+        </div>
+      </div>
+
+      <div class="column is-4 is-size-4">
+        <label class="label">Nacionalidade</label>
+        <div class="control">
+          <input class="input" type="text" v-model="medico.nacionalidade" placeholder="nacionalidade">
+        </div>
+      </div>
+    </div>
+
+    <div class="divisoes container-docs">
+      <div class="column is-6 is-size-6">
+        <label class="label">CPF</label>
+        <div class="control">
+          <input class="input" type="number" v-model="medico.cpf" placeholder="cpf">
+        </div>
+      </div>
+
+      <div class="column is-6 is-size-6">
+        <label class="label">RG</label>
+        <div class="control">
+          <input class="input" type="number" v-model="medico.rg" placeholder="rg">
+        </div>
+      </div>
+    </div>
+
+    <label class="label">Email</label>
+    <div class="control">
+      <input class="input" type="email" v-model="medico.email" placeholder="e-mail">
+    </div>
+
+    <div class="divisoes container-acesso">
+      <div class="column is-6 is-size-6">
+        <label class="label">Login</label>
+        <div class="control">
+          <input class="input" type="text" v-model="medico.login" placeholder="login">
+        </div>
+      </div>
+
+      <div class="column is-6 is-size-6">
+        <label class="label">Senha</label>
+        <div class="control">
+          <input class="input" type="password" v-model="medico.senha" placeholder="senha">
+        </div>
+      </div>
+    </div>
+
+    <div class="divisoes info-particionadas">
+      <div class="column is-4 is-size-4">
+        <div class="enums">
+          <div class="enum-sexo">
+            <label class="label">Sexo</label>
+            <div class="control">
+              <div class="select">
+                <select v-model="medico.sexo">
+                  <option>masculino</option>
+                  <option>feminino</option>
+                  <option>outro</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-4 is-size-4">
+        <div class="field">
+          <label class="label">CRM</label>
+          <div class="control">
+            <input class="input" type="number" v-model="medico.crm" placeholder="crm">
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-4 is-size-4">
+        <div class="field">
+          <label class="label">Consultório</label>
+          <div class="control">
+            <input class="input" type="text" v-model="medico.consultorio" placeholder="consultorio">
           </div>
         </div>
       </div>
     </div>
 
-    <div class="field">
-      <label class="label">CRM</label>
-      <div class="control">
-        <input class="input" type="number" v-model="medico.crm" placeholder="crm">
+    <div class="divisoes info-medico">
+      <div class="column is-4 is-size-4">
+        <div class="field">
+          <label class="label">Porcentagem de Participação</label>
+          <div class="control">
+            <input class="input" type="number" v-model="medico.porcentagemParticipacao" placeholder="% de participação">
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="field">
-      <label class="label">Consultório</label>
-      <div class="control">
-        <input class="input" type="text" v-model="medico.consultorio" placeholder="consultorio">
+      <div class="column is-4 is-size-4">
+        <div class="field">
+          <label class="label">Valor Consulta</label>
+          <div class="control">
+            <input class="input" type="number" v-model="medico.valorConsulta" placeholder="valor consulta">
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="field">
-      <label class="label">Porcentagem de Participação</label>
-      <div class="control">
-        <input class="input" type="number" v-model="medico.porcentagemParticipacao" placeholder="% de participação">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">Valor Consulta</label>
-      <div class="control">
-        <input class="input" type="number" v-model="medico.valorConsulta" placeholder="valor consulta">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">ID da Especialidade</label>
-      <div class="control">
-        <input class="input" type="number" v-model="medico.especialidade" placeholder="especialidade">
+      <div class="column is-4 is-size-4">
+        <div class="field">
+          <label class="label">ID da Especialidade</label>
+          <div class="control">
+            <input class="input" type="number" v-model="medico.especialidade" placeholder="especialidade">
+          </div>
+        </div>
       </div>
     </div>
 
