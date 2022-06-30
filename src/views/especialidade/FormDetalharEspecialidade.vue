@@ -1,11 +1,14 @@
 <template>
   <div class="container">
     <h1 class="titulo" >Detalhar Especialidade</h1>
-    <div class="field">
-      <label class="label">Nome</label>
-      <div class="control">
-        <input class="input" type="text" placeholder="nome" >
-      </div>
+
+    <div class="dados-detalhar">
+        <i>Nome: {{especialidade.nome}}</i>
+      <i class="status">
+        Status: &nbsp;
+        <i v-if="especialidade.ativo" style="color: limegreen"> Ativo</i>
+        <i v-if="!especialidade.ativo" style="color: red;"> Inativo</i>
+      </i>
     </div>
 
     <div class="botoes-form">
@@ -35,11 +38,11 @@ export default class EspecialidadeFormDetalhar extends Vue {
 
   public mounted(): void {
     this.especialidadeClient = new EspecialidadeClient()
-    console.log(this.id)
-    console.log(this.model)
+    this.getEspecialidade()
   }
 
   private getEspecialidade(): void {
+
     this.especialidadeClient.findById(this.id)
         .then(
             sucess => {
@@ -48,7 +51,8 @@ export default class EspecialidadeFormDetalhar extends Vue {
               this.especialidade.ativo = sucess.ativo
               this.especialidade.cadastro = sucess.cadastro
               this.especialidade.atualizado = sucess.atualizado
-            }
+            },
+            error => console.log(error)
         )
   }
 }
@@ -65,11 +69,14 @@ export default class EspecialidadeFormDetalhar extends Vue {
   justify-content: center;
   font-size: 30px;
 }
-.enums{
+.dados-detalhar{
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+.status{
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  margin-block-end: 20px;
 }
 .botoes-form{
   display: flex;
