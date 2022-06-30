@@ -1,33 +1,68 @@
 <template>
   <div class="container">
     <h1 class="titulo" >Detalhar Convênio</h1>
-    <div class="field">
-      <label class="label">Nome</label>
-      <div class="control">
-        <input class="input" type="text" placeholder="nome">
-      </div>
-    </div>
 
-    <div class="field">
-      <label class="label">Valor</label>
-      <div class="control">
-        <input class="input" type="number" placeholder="valor">
-      </div>
+    <div class="dados-detalhar-conv">
+      <i>Id: {{convenio.id}}</i>
+      <i>Nome: {{convenio.nome}}</i>
+      <i class="status">
+        Status: &nbsp;
+        <i v-if="convenio.ativo" style="color: limegreen"> Ativo</i>
+        <i v-if="!convenio.ativo" style="color: red;"> Inativo</i>
+      </i>
+      <i>Valor do Convênio: {{convenio.valor}}</i>
     </div>
 
     <div class="botoes-form">
       <router-link class="link-voltar" to="/convenio">
         <button class="button btn-voltar">Voltar</button>
       </router-link>
-      <button class="button btn-editar">Editar</button>
+      <button class="button btn-editar" @click="onClickPaginaEditar(convenio.id)">Editar</button>
       <button class="button btn-desativar">Desativar</button>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "FormDetalharConvenio"
+<script lang="ts">
+import { Vue } from 'vue-class-component'
+import { Prop } from 'vue-property-decorator'
+import { ConvenioClient } from '@/client/convenio.client'
+import { Convenio } from '@/model/convenio.model'
+
+export default class ConvenioFormDetalhar extends Vue {
+  private convenioClient!: ConvenioClient
+  private convenio : Convenio = new Convenio()
+
+  @Prop({type: Number, required: false})
+  private readonly id!: number
+  @Prop({type: String, default: false})
+  private readonly model!: string
+
+  public mounted(): void {
+    this.convenioClient = new ConvenioClient()
+    this.getConvenio()
+    console.log(this.id)
+    console.log(this.model)
+  }
+
+  private getConvenio(): void {
+    this.convenioClient.findById(this.id)
+        .then(
+            sucess => {
+              this.convenio.id = sucess.id
+              this.convenio.nome = sucess.nome
+              this.convenio.valor = sucess.valor
+              this.convenio.ativo = sucess.ativo
+              this.convenio.cadastro = sucess.cadastro
+              this.convenio.atualizado = sucess.atualizado
+            },
+            error => console.log(error)
+        )
+  }
+
+  private onClickPaginaEditar(idConvenio: number){
+    this.$router.push({ name: 'editarConvenio', params: { id: idConvenio, model: 'editar' } })
+  }
 }
 </script>
 
@@ -42,11 +77,14 @@ export default {
   justify-content: center;
   font-size: 30px;
 }
-.enums{
+.dados-detalhar-conv{
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+.status{
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  margin-block-end: 20px;
 }
 .botoes-form{
   display: flex;

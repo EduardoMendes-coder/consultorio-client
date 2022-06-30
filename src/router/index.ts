@@ -17,9 +17,16 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/convenio/FormCadastrarConvenio.vue")
   },
   {
-    path: '/convenio/detalhar/',
+    path: '/convenio/formulario/:model/:id',
     name: 'detalharConvenio',
+    props: (router) => ({ id: router.params.id, model: router.params.model }),
     component: () => import("../views/convenio/FormDetalharConvenio.vue")
+  },
+  {
+    path: '/convenio/formulario/:model/:id',
+    name: 'editarConvenio',
+    props: (router) => ({ id: router.params.id, model: router.params.model }),
+    component: () => import("../views/convenio/FormEditarConvenio.vue")
   },
   {
     path: '/especialidade',
