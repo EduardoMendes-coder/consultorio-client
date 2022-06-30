@@ -94,6 +94,7 @@
   import { Prop } from 'vue-property-decorator'
   import { PacienteClient } from '@/client/paciente.client'
   import { Paciente } from '@/model/paciente.model'
+  import {Especialidade} from "@/model/especialidade.model";
   export default class PacienteFormDetalhar extends Vue {
     private pacienteClient!: PacienteClient
     private paciente : Paciente = new Paciente()
