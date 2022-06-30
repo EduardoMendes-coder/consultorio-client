@@ -48,9 +48,7 @@
       <th>{{ item.dataVencimento }}</th>
       <th>{{ item.celular }}</th>
       <th>
-        <router-link class="link-cad" to="/paciente/detalhar">
-          <button style="background-color: dodgerblue; color: white" class="button btn-detalhar">Detalhar</button>
-        </router-link>
+        <button @click="onClickPaginaDetalhar(item.id)" style="background-color: dodgerblue; color: white" class="button btn-detalhar">Detalhar</button>
       </th>
     </tr>
     </tbody>
@@ -84,6 +82,9 @@ export default class PacienteList extends Vue {
             },
             error => console.log(error)
         )
+  }
+  private onClickPaginaDetalhar(idPaciente: number){
+    this.$router.push({ name: 'detalharPaciente', params: { id: idPaciente, model: 'detalhar' } })
   }
 }
 </script>
