@@ -15,7 +15,7 @@
       <router-link class="link-voltar" to="/especialidade">
         <button class="button btn-voltar">Voltar</button>
       </router-link>
-      <button class="button btn-editar">Editar</button>
+      <button class="button btn-editar" @click="onClickPaginaEditar(especialidade.id)">Editar</button>
       <button class="button btn-desativar">Desativar</button>
     </div>
   </div>
@@ -42,7 +42,6 @@ export default class EspecialidadeFormDetalhar extends Vue {
   }
 
   private getEspecialidade(): void {
-
     this.especialidadeClient.findById(this.id)
         .then(
             sucess => {
@@ -54,6 +53,10 @@ export default class EspecialidadeFormDetalhar extends Vue {
             },
             error => console.log(error)
         )
+  }
+
+  private onClickPaginaEditar(idEspecialidade: number){
+    this.$router.push({ name: 'editarEspecialidade', params: { id: idEspecialidade, model: 'editar' } })
   }
 }
 </script>

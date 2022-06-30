@@ -38,6 +38,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/especialidade/FormDetalharEspecialidade.vue")
   },
   {
+    path: '/especialidade/formulario/:model/:id',
+    name: 'editarEspecialidade',
+    props: (router) => ({ id: router.params.id, model: router.params.model }),
+    component: () => import("../views/especialidade/FormEditarEspecialidade.vue")
+  },
+  {
     path: '/medico',
     name: 'medico',
     component: () => import("../views/medico/MedicoList.vue")
