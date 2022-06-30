@@ -2,115 +2,86 @@
   <div class="container">
     <h1 class="titulo" >Detalhar Médico</h1>
     <div class="field">
-      <label class="label">Nome</label>
       <div class="control">
-        <input class="input" type="text" placeholder="nome">
+        <i>Nome: {{medico.nome}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Telefone</label>
       <div class="control">
-        <input class="input" type="number" placeholder="telefone">
+        <i>Telefone: {{medico.telefone}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Celular</label>
       <div class="control">
-        <input class="input" type="number" placeholder="celular">
+        <i>Celular: {{medico.celular}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Nacionalidade</label>
       <div class="control">
-        <input class="input" type="text" placeholder="nacionalidade">
+        <i>Nacionalidade: {{medico.nacionalidade}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">CPF</label>
       <div class="control">
-        <input class="input" type="number" placeholder="cpf">
+        <i>CPF: {{medico.cpf}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">RG</label>
       <div class="control">
-        <input class="input" type="number" placeholder="rg">
+        <i>RG: {{medico.rg}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Email</label>
       <div class="control">
-        <input class="input" type="email" placeholder="e-mail">
+        <i>E-mail: {{medico.email}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Login</label>
       <div class="control">
-        <input class="input" type="text" placeholder="login">
+        <i>Login: {{medico.login}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Senha</label>
       <div class="control">
-        <input class="input" type="password" placeholder="senha">
-      </div>
-    </div>
-
-    <div class="enums">
-      <div class="enum-sexo">
-        <label class="label">Sexo</label>
-        <div class="control">
-          <div class="select">
-            <select>
-              <option>Masculino</option>
-              <option>Feminino</option>
-              <option>Outro</option>
-            </select>
-          </div>
-        </div>
+        <i>Sexo: {{medico.sexo}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">CRM</label>
       <div class="control">
-        <input class="input" type="number" placeholder="crm">
+        <i>CRM: {{medico.crm}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Consultório</label>
       <div class="control">
-        <input class="input" type="text" placeholder="consultorio">
+        <i>Consultório: {{medico.consultorio}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Porcentagem de Participação</label>
       <div class="control">
-        <input class="input" type="number" placeholder="% de participação">
+        <i>Porcentagem de Participação: {{medico.porcentagemParticipacao}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Valor Consulta</label>
       <div class="control">
-        <input class="input" type="number" placeholder="valor consulta">
+        <i>Valor da Consulta: {{medico.valorConsulta}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Especialidade</label>
       <div class="control">
-        <input class="input" type="text" placeholder="especialidade">
+        <i>Especialidade: {{medico.especialidade}}</i>
       </div>
     </div>
 
@@ -118,18 +89,60 @@
       <router-link class="link-voltar" to="/medico">
         <button class="button btn-voltar">Voltar</button>
       </router-link>
-      <button class="button btn-editar">Editar</button>
+      <button @click="onClickPaginaEditar(medico.id)" class="button btn-editar">Editar</button>
       <button class="button btn-desativar">Desativar</button>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "FormDetalharMedico"
-}
+  <script lang="ts">
+  import { Vue } from 'vue-class-component'
+  import { Prop } from 'vue-property-decorator'
+  import { MedicoClient } from '@/client/medico.client'
+  import { Medico } from '@/model/medico.model'
+  export default class MedicoFormDetalhar extends Vue {
+    private medicoClient!: MedicoClient
+    private medico : Medico = new Medico()
+    @Prop({type: Number, required: false})
+    private readonly id!: number
+    @Prop({type: String, default: false})
+    private readonly model!: string
+    public mounted(): void {
+      this.medicoClient = new MedicoClient()
+      this.getMedico()
+    }
+    private getMedico(): void {
+      this.medicoClient.findById(this.id)
+          .then(
+              sucess => {
+                this.medico.id = sucess.id
+                this.medico.nome = sucess.nome
+                this.medico.telefone = sucess.telefone
+                this.medico.celular = sucess.celular
+                this.medico.nacionalidade = sucess.nacionalidade
+                this.medico.cpf = sucess.cpf
+                this.medico.rg = sucess.rg
+                this.medico.email = sucess.email
+                this.medico.login = sucess.login
+                this.medico.senha = sucess.senha
+                this.medico.sexo = sucess.sexo
+                this.medico.crm = sucess.crm
+                this.medico.consultorio = sucess.consultorio
+                this.medico.especialidade = sucess.especialidade
+                this.medico.valorConsulta = sucess.valorConsulta
+                this.medico.porcentagemParticipacao = sucess.porcentagemParticipacao
+                this.medico.ativo = sucess.ativo
+                this.medico.cadastro = sucess.cadastro
+                this.medico.atualizado = sucess.atualizado
+              },
+              error => console.log(error)
+          )
+    }
+    private onClickPaginaEditar(idMedico: number){
+      this.$router.push({ name: 'editarMedico', params: { id: idMedico, model: 'editar' } })
+    }
+  }
 </script>
-
 <style lang="scss">
 @import "~bulma/bulma.sass";
 .container{

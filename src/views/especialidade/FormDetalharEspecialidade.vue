@@ -1,26 +1,63 @@
 <template>
   <div class="container">
     <h1 class="titulo" >Detalhar Especialidade</h1>
-    <div class="field">
-      <label class="label">Nome</label>
-      <div class="control">
-        <input class="input" type="text" placeholder="nome">
-      </div>
+
+    <div class="dados-detalhar">
+        <i>Nome: {{especialidade.nome}}</i>
+      <i class="status">
+        Status: &nbsp;
+        <i v-if="especialidade.ativo" style="color: limegreen"> Ativo</i>
+        <i v-if="!especialidade.ativo" style="color: red;"> Inativo</i>
+      </i>
     </div>
 
     <div class="botoes-form">
       <router-link class="link-voltar" to="/especialidade">
         <button class="button btn-voltar">Voltar</button>
       </router-link>
-      <button class="button btn-editar">Editar</button>
+      <button class="button btn-editar" @click="onClickPaginaEditar(especialidade.id)">Editar</button>
       <button class="button btn-desativar">Desativar</button>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "FormDetalharEspecialidade"
+<script lang="ts">
+import { Vue } from 'vue-class-component'
+import { Prop } from 'vue-property-decorator'
+import { EspecialidadeClient } from '@/client/especialidade.client'
+import { Especialidade } from '@/model/especialidade.model'
+
+export default class EspecialidadeFormDetalhar extends Vue {
+  private especialidadeClient!: EspecialidadeClient
+  private especialidade : Especialidade = new Especialidade()
+
+  @Prop({type: Number, required: false})
+  private readonly id!: number
+  @Prop({type: String, default: false})
+  private readonly model!: string
+
+  public mounted(): void {
+    this.especialidadeClient = new EspecialidadeClient()
+    this.getEspecialidade()
+  }
+
+  private getEspecialidade(): void {
+    this.especialidadeClient.findById(this.id)
+        .then(
+            sucess => {
+              this.especialidade.id = sucess.id
+              this.especialidade.nome = sucess.nome
+              this.especialidade.ativo = sucess.ativo
+              this.especialidade.cadastro = sucess.cadastro
+              this.especialidade.atualizado = sucess.atualizado
+            },
+            error => console.log(error)
+        )
+  }
+
+  private onClickPaginaEditar(idEspecialidade: number){
+    this.$router.push({ name: 'editarEspecialidade', params: { id: idEspecialidade, model: 'editar' } })
+  }
 }
 </script>
 
@@ -35,11 +72,14 @@ export default {
   justify-content: center;
   font-size: 30px;
 }
-.enums{
+.dados-detalhar{
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+}
+.status{
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  margin-block-end: 20px;
 }
 .botoes-form{
   display: flex;

@@ -48,9 +48,7 @@
       <th>{{ item.dataContratacao }}</th>
       <th>{{ item.celular }}</th>
       <th>
-        <router-link class="link-cad" to="/secretaria/detalhar">
-          <button style="background-color: dodgerblue; color: white" class="button btn-detalhar">Detalhar</button>
-        </router-link>
+        <button @click="onClickPaginaDetalhar(item.id)" style="background-color: dodgerblue; color: white" class="button btn-detalhar">Detalhar</button>
       </th>
     </tr>
     </tbody>
@@ -86,6 +84,9 @@ export default class SecretariaList extends Vue {
             },
             error => console.log(error)
         )
+  }
+  private onClickPaginaDetalhar(idSecretaria: number){
+    this.$router.push({ name: 'detalharSecretaria', params: { id: idSecretaria, model: 'detalhar' } })
   }
 }
 </script>

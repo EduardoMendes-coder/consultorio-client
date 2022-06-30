@@ -2,112 +2,80 @@
   <div class="container">
     <h1 class="titulo" >Detalhar Paciente</h1>
     <div class="field">
-      <label class="label">Nome</label>
       <div class="control">
-        <input class="input" type="text" placeholder="nome">
+        <i>Nome : {{paciente.nome}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Telefone</label>
       <div class="control">
-        <input class="input" type="number" placeholder="telefone">
+        <i>Telefone: {{paciente.telefone}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Celular</label>
       <div class="control">
-        <input class="input" type="number" placeholder="celular">
+        <i>Celular: {{paciente.celular}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Nacionalidade</label>
       <div class="control">
-        <input class="input" type="text" placeholder="nacionalidade">
+        <i>Nacionalidade: {{paciente.nacionalidade}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">CPF</label>
       <div class="control">
-        <input class="input" type="number" placeholder="cpf">
+        <i>CPF: {{paciente.cpf}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">RG</label>
       <div class="control">
-        <input class="input" type="number" placeholder="rg">
+        <i>RG: {{paciente.rg}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Email</label>
       <div class="control">
-        <input class="input" type="email" placeholder="e-mail">
+        <i>E-mail: {{paciente.email}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Login</label>
       <div class="control">
-        <input class="input" type="text" placeholder="login">
+        <i>Login: {{paciente.login}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Senha</label>
       <div class="control">
-        <input class="input" type="password" placeholder="senha">
-      </div>
-    </div>
-
-    <div class="enums">
-      <div class="enum-sexo">
-        <label class="label">Sexo</label>
-        <div class="control">
-          <div class="select">
-            <select>
-              <option>Masculino</option>
-              <option>Feminino</option>
-              <option>Outro</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="enum-tipo-atendimento">
-        <label class="label">Tipo Atendimento</label>
-        <div class="control">
-          <div class="select">
-            <select>
-              <option>Convênio</option>
-              <option>Particular</option>
-            </select>
-          </div>
-        </div>
+        <i>Sexo: {{paciente.sexo}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">N° Cartão Convênio</label>
       <div class="control">
-        <input class="input" type="number" placeholder="n° cartão convênio">
+        <i>Tipo de Atendimento: {{paciente.tipoAtendimento}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Data Vencimento</label>
       <div class="control">
-        <input class="input" type="date" placeholder="data vencimento">
+        <i>N° Cartão Convênio: {{paciente.numeroCartaoConvenio}}</i>
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Convênio</label>
       <div class="control">
-        <input class="input" type="text" placeholder="convênio">
+        <i>Data de Vencimento: {{paciente.dataVencimento}}</i>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <i>Convênio: {{paciente.convenio}}</i>
       </div>
     </div>
 
@@ -115,16 +83,58 @@
       <router-link class="link-voltar" to="/paciente">
         <button class="button btn-voltar">Voltar</button>
       </router-link>
-      <button class="button btn-editar">Editar</button>
+      <button class="button btn-editar" @click="onClickPaginaEditar(paciente.id)">Editar</button>
       <button class="button btn-desativar">Desativar</button>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "FormDetalharPaciente"
-}
+  <script lang="ts">
+  import { Vue } from 'vue-class-component'
+  import { Prop } from 'vue-property-decorator'
+  import { PacienteClient } from '@/client/paciente.client'
+  import { Paciente } from '@/model/paciente.model'
+  export default class PacienteFormDetalhar extends Vue {
+    private pacienteClient!: PacienteClient
+    private paciente : Paciente = new Paciente()
+    @Prop({type: Number, required: false})
+    private readonly id!: number
+    @Prop({type: String, default: false})
+    private readonly model!: string
+    public mounted(): void {
+      this.pacienteClient = new PacienteClient()
+      this.getPaciente()
+    }
+    private getPaciente(): void {
+      this.pacienteClient.findById(this.id)
+          .then(
+              sucess => {
+                this.paciente.id = sucess.id
+                this.paciente.nome = sucess.nome
+                this.paciente.telefone = sucess.telefone
+                this.paciente.celular = sucess.celular
+                this.paciente.nacionalidade = sucess.nacionalidade
+                this.paciente.cpf = sucess.cpf
+                this.paciente.rg = sucess.rg
+                this.paciente.email = sucess.email
+                this.paciente.login = sucess.login
+                this.paciente.senha = sucess.senha
+                this.paciente.sexo = sucess.sexo
+                this.paciente.tipoAtendimento = sucess.tipoAtendimento
+                this.paciente.numeroCartaoConvenio = sucess.numeroCartaoConvenio
+                this.paciente.dataVencimento = sucess.dataVencimento
+                this.paciente.convenio = sucess.convenio
+                this.paciente.ativo = sucess.ativo
+                this.paciente.cadastro = sucess.cadastro
+                this.paciente.atualizado = sucess.atualizado
+              },
+              error => console.log(error)
+          )
+    }
+    private onClickPaginaEditar(idPaciente: number){
+      this.$router.push({ name: 'editarPaciente', params: { id: idPaciente, model: 'editar' } })
+    }
+  }
 </script>
 
 <style lang="scss">
