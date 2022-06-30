@@ -17,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/convenio/FormCadastrarConvenio.vue")
   },
   {
-    path: '/convenio/detalhar',
+    path: '/convenio/detalhar/',
     name: 'detalharConvenio',
     component: () => import("../views/convenio/FormDetalharConvenio.vue")
   },
@@ -32,8 +32,9 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/especialidade/FormCadastrarEspecialidade.vue")
   },
   {
-    path: '/especialidade/detalhar',
+    path: '/especialidade/formulario/:model/:id',
     name: 'detalharEspecialidade',
+    props: (router) => ({ id: router.params.id, model: router.params.model }),
     component: () => import("../views/especialidade/FormDetalharEspecialidade.vue")
   },
   {

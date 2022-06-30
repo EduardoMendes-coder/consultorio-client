@@ -4,7 +4,7 @@
     <div class="field">
       <label class="label">Nome</label>
       <div class="control">
-        <input class="input" type="text" placeholder="nome">
+        <input class="input" type="text" placeholder="nome" >
       </div>
     </div>
 
@@ -18,9 +18,39 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "FormDetalharEspecialidade"
+<script lang="ts">
+import { Vue } from 'vue-class-component'
+import { Prop } from 'vue-property-decorator'
+import { EspecialidadeClient } from '@/client/especialidade.client'
+import { Especialidade } from '@/model/especialidade.model'
+
+export default class EspecialidadeFormDetalhar extends Vue {
+  private especialidadeClient!: EspecialidadeClient
+  private especialidade : Especialidade = new Especialidade()
+
+  @Prop({type: Number, required: false})
+  private readonly id!: number
+  @Prop({type: String, default: false})
+  private readonly model!: string
+
+  public mounted(): void {
+    this.especialidadeClient = new EspecialidadeClient()
+    console.log(this.id)
+    console.log(this.model)
+  }
+
+  private getEspecialidade(): void {
+    this.especialidadeClient.findById(this.id)
+        .then(
+            sucess => {
+              this.especialidade.id = sucess.id
+              this.especialidade.nome = sucess.nome
+              this.especialidade.ativo = sucess.ativo
+              this.especialidade.cadastro = sucess.cadastro
+              this.especialidade.atualizado = sucess.atualizado
+            }
+        )
+  }
 }
 </script>
 

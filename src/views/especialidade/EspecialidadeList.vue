@@ -40,9 +40,7 @@
 
       <th>{{ item.nome }}</th>
       <th>
-        <router-link class="link-cad" to="/especialidade/detalhar">
-          <button style="background-color: dodgerblue; color: white" class="button btn-detalhar">Detalhar</button>
-        </router-link>
+        <button @click="onClickPaginaDetalhar(item.id)" style="background-color: dodgerblue; color: white" class="button btn-detalhar">Detalhar</button>
       </th>
     </tr>
     </tbody>
@@ -76,6 +74,10 @@
               },
               error => console.log(error)
           )
+    }
+
+    private onClickPaginaDetalhar(idEspecialidade: number){
+      this.$router.push({ name: 'detalharEspecialidade', params: { id: idEspecialidade, model: 'detalhar' } })
     }
   }
 </script>
