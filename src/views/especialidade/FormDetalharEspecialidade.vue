@@ -16,7 +16,7 @@
         <button class="button btn-voltar">Voltar</button>
       </router-link>
       <button class="button btn-editar" @click="onClickPaginaEditar(especialidade.id)">Editar</button>
-      <button class="button btn-desativar">Desativar</button>
+      <button @click="desativarEspecialidade(especialidade)" class="button btn-desativar">Desativar</button>
     </div>
   </div>
 </template>
@@ -57,6 +57,16 @@ export default class EspecialidadeFormDetalhar extends Vue {
 
   private onClickPaginaEditar(idEspecialidade: number){
     this.$router.push({ name: 'editarEspecialidade', params: { id: idEspecialidade, model: 'editar' } })
+  }
+
+  private desativarEspecialidade(especialidadeDesativar: Especialidade){
+    especialidadeDesativar.id = this.especialidade.id
+    especialidadeDesativar.nome = this.especialidade.nome
+    especialidadeDesativar.ativo = false
+    especialidadeDesativar.cadastro = this.especialidade.cadastro
+    especialidadeDesativar.atualizado = this.especialidade.atualizado
+    this.especialidadeClient.editar(especialidadeDesativar)
+    this.$router.push({name: 'especialidade'})
   }
 }
 </script>

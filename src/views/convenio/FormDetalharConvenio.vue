@@ -41,8 +41,6 @@ export default class ConvenioFormDetalhar extends Vue {
   public mounted(): void {
     this.convenioClient = new ConvenioClient()
     this.getConvenio()
-    console.log(this.id)
-    console.log(this.model)
   }
 
   private getConvenio(): void {
