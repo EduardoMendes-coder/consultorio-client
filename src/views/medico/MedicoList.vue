@@ -48,9 +48,7 @@
       <th>{{ item.valorConsulta }}</th>
       <th>{{ item.especialidade.nome }}</th>
       <th>
-        <router-link class="link-cad" to="/medico/detalhar">
-          <button style="background-color: dodgerblue; color: white" class="button btn-detalhar">Detalhar</button>
-        </router-link>
+        <button @click="onClickPaginaDetalhar(item.id)" style="background-color: dodgerblue; color: white" class="button btn-detalhar">Detalhar</button>
       </th>
     </tr>
     </tbody>
@@ -84,6 +82,9 @@ export default class MedicoList extends Vue {
             },
             error => console.log(error)
         )
+  }
+  private onClickPaginaDetalhar(idMedico: number){
+    this.$router.push({ name: 'detalharMedico', params: { id: idMedico, model: 'detalhar' } })
   }
 }
 </script>

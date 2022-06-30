@@ -66,6 +66,18 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/medico/FormDetalharMedico.vue")
   },
   {
+    path: '/medico/formulario/:model/:id',
+    name: 'detalharMedico',
+    props: (router) => ({ id: router.params.id, model: router.params.model }),
+    component: () => import("../views/medico/FormDetalharMedico.vue")
+  },
+  {
+    path: '/medico/formulario/:model/:id',
+    name: 'editarMedico',
+    props: (router) => ({ id: router.params.id, model: router.params.model }),
+    component: () => import("../views/medico/FormEditarMedico.vue")
+  },
+  {
     path: '/paciente',
     name: 'paciente',
     component: () => import("../views/paciente/PacienteList.vue")

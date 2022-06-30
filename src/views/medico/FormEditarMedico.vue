@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="titulo" >Editar Paciente</h1>
+    <h1 class="titulo" >Editar Médico</h1>
 
     <div class="columns" v-if="notification.ativo">
       <div class="column is-12">
@@ -14,8 +14,8 @@
     <div class="columns">
       <div class="column is-12 is-size-3">
         <label class="label">
-          <input v-model="paciente.ativo" checked type="checkbox">
-          Ativar Paciente
+          <input v-model="medico.ativo" checked type="checkbox">
+          Ativar Médico
         </label>
       </div>
     </div>
@@ -23,63 +23,63 @@
     <div class="field">
       <label class="label">Nome</label>
       <div class="control">
-        <input class="input" type="text" v-model="paciente.nome" placeholder="nome">
+        <input class="input" type="text" v-model="medico.nome" placeholder="nome">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Telefone</label>
       <div class="control">
-        <input class="input" type="number" v-model="paciente.telefone" placeholder="telefone">
+        <input class="input" type="number" v-model="medico.telefone" placeholder="telefone">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Celular</label>
       <div class="control">
-        <input class="input" type="number" v-model="paciente.celular" placeholder="celular">
+        <input class="input" type="number" v-model="medico.celular" placeholder="celular">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Nacionalidade</label>
       <div class="control">
-        <input class="input" type="text" v-model="paciente.nacionalidade" placeholder="nacionalidade">
+        <input class="input" type="text" v-model="medico.nacionalidade" placeholder="nacionalidade">
       </div>
     </div>
 
     <div class="field">
       <label class="label">CPF</label>
       <div class="control">
-        <input class="input" type="number" v-model="paciente.cpf" placeholder="cpf">
+        <input class="input" type="number" v-model="medico.cpf" placeholder="cpf">
       </div>
     </div>
 
     <div class="field">
       <label class="label">RG</label>
       <div class="control">
-        <input class="input" type="number" v-model="paciente.rg" placeholder="rg">
+        <input class="input" type="number" v-model="medico.rg" placeholder="rg">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Email</label>
       <div class="control">
-        <input class="input" type="email" v-model="paciente.email" placeholder="e-mail">
+        <input class="input" type="email" v-model="medico.email" placeholder="e-mail">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Login</label>
       <div class="control">
-        <input class="input" type="text" v-model="paciente.login" placeholder="login">
+        <input class="input" type="text" v-model="medico.login" placeholder="login">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Senha</label>
       <div class="control">
-        <input class="input" type="password" v-model="paciente.senha" placeholder="senha">
+        <input class="input" type="password" v-model="medico.senha" placeholder="senha">
       </div>
     </div>
 
@@ -88,7 +88,7 @@
         <label class="label">Sexo</label>
         <div class="control">
           <div class="select">
-            <select v-model="paciente.sexo">
+            <select v-model="medico.sexo">
               <option>masculino</option>
               <option>feminino</option>
               <option>outro</option>
@@ -96,42 +96,45 @@
           </div>
         </div>
       </div>
-      <div class="enum-tipo-atendimento">
-        <label class="label">Tipo Atendimento</label>
-        <div class="control">
-          <div class="select">
-            <select v-model="paciente.tipoAtendimento">
-              <option>convenio</option>
-              <option>particular</option>
-            </select>
-          </div>
-        </div>
+    </div>
+
+    <div class="field">
+      <label class="label">CRM</label>
+      <div class="control">
+        <input class="input" type="number" v-model="medico.crm" placeholder="crm">
       </div>
     </div>
 
     <div class="field">
-      <label class="label">N° Cartão Convênio</label>
+      <label class="label">Consultório</label>
       <div class="control">
-        <input class="input" type="number" v-model="paciente.numeroCartaoConvenio" placeholder="n° cartão convênio">
+        <input class="input" type="text" v-model="medico.consultorio" placeholder="consultorio">
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Data Vencimento</label>
+      <label class="label">Porcentagem de Participação</label>
       <div class="control">
-        <input class="input" type="datetime-local" v-model="paciente.dataVencimento" placeholder="data vencimento">
+        <input class="input" type="number" v-model="medico.porcentagemParticipacao" placeholder="% de participação">
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Convênio</label>
+      <label class="label">Valor Consulta</label>
       <div class="control">
-        <input class="input" type="text" v-model="paciente.convenio" placeholder="convênio">
+        <input class="input" type="number" v-model="medico.valorConsulta" placeholder="valor consulta">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">ID da Especialidade</label>
+      <div class="control">
+        <input class="input" type="number" v-model="medico.especialidade" placeholder="especialidade">
       </div>
     </div>
 
     <div class="botoes-form">
-      <router-link class="link-cad" to="/paciente">
+      <router-link class="link-cad" to="/medico">
         <button class="button btn-voltar">Voltar</button>
       </router-link>
       <button class="button btn-salvar" @click="onClickEditar()">Salvar</button>
@@ -141,53 +144,53 @@
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';
-import { Paciente } from '@/model/paciente.model'
+import { Medico } from '@/model/medico.model'
 import { Notification } from '@/model/notification'
-import { PacienteClient } from '@/client/paciente.client'
+import { MedicoClient } from '@/client/medico.client'
 import {Prop} from "vue-property-decorator";
-export default class PacienteFormEditar extends Vue {
-  private pacienteClient!: PacienteClient
-  private paciente : Paciente = new Paciente()
+export default class MedicoFormEditar extends Vue {
+  private medicoClient!: MedicoClient
+  private medico : Medico = new Medico()
   private notification : Notification = new Notification()
   @Prop({type: Number, required: false})
   private readonly id!: number
   @Prop({type: String, default: false})
   private readonly model!: string
   public mounted(): void {
-    this.pacienteClient = new PacienteClient()
-    this.getPaciente()
+    this.medicoClient = new MedicoClient()
+    this.getMedico()
   }
-  private getPaciente(): void {
-    this.pacienteClient.findById(this.id)
+  private getMedico(): void {
+    this.medicoClient.findById(this.id)
         .then(
             sucess => {
-              this.paciente.id = sucess.id
-              this.paciente.nome = sucess.nome
-              this.paciente.telefone = sucess.telefone
-              this.paciente.celular = sucess.celular
-              this.paciente.nacionalidade = sucess.nacionalidade
-              this.paciente.cpf = sucess.cpf
-              this.paciente.rg = sucess.rg
-              this.paciente.email = sucess.email
-              this.paciente.login = sucess.login
-              this.paciente.senha = sucess.senha
-              this.paciente.sexo = sucess.sexo
-              this.paciente.tipoAtendimento = sucess.tipoAtendimento
-              this.paciente.numeroCartaoConvenio = sucess.numeroCartaoConvenio
-              this.paciente.dataVencimento = sucess.dataVencimento
-              this.paciente.convenio = sucess.convenio
-              this.paciente.ativo = sucess.ativo
-              this.paciente.cadastro = sucess.cadastro
-              this.paciente.atualizado = sucess.atualizado
+              this.medico.id = sucess.id
+              this.medico.nome = sucess.nome
+              this.medico.telefone = sucess.telefone
+              this.medico.celular = sucess.celular
+              this.medico.nacionalidade = sucess.nacionalidade
+              this.medico.cpf = sucess.cpf
+              this.medico.rg = sucess.rg
+              this.medico.email = sucess.email
+              this.medico.login = sucess.login
+              this.medico.senha = sucess.senha
+              this.medico.sexo = sucess.sexo
+              this.medico.crm = sucess.crm
+              this.medico.especialidade.nome = sucess.especialidade.nome
+              this.medico.valorConsulta = sucess.valorConsulta
+              this.medico.porcentagemParticipacao = sucess.porcentagemParticipacao
+              this.medico.ativo = sucess.ativo
+              this.medico.cadastro = sucess.cadastro
+              this.medico.atualizado = sucess.atualizado
             },
             error => console.log(error)
         )
   }
   private onClickEditar(): void {
-    this.pacienteClient.editar(this.paciente)
+    this.medicoClient.editar(this.medico)
         .then(
             success => {
-              this.notification = this.notification.new(true, 'notification is-success', 'Paciente Editado com sucesso!!!')
+              this.notification = this.notification.new(true, 'notification is-success', 'Médico Editado com sucesso!!!')
               this.onClickLimpar()
             }, error => {
               this.notification = this.notification.new(true, 'notification is-danger', 'Error: ' + error)
@@ -198,7 +201,7 @@ export default class PacienteFormEditar extends Vue {
     this.notification = new Notification()
   }
   private onClickLimpar(): void {
-    this.paciente = new Paciente()
+    this.medico = new Medico()
   }
 }
 </script>
