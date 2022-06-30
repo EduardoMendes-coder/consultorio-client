@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="titulo" >Editar Médico</h1>
+    <h1 class="titulo" >Editar Secretária</h1>
 
     <div class="columns" v-if="notification.ativo">
       <div class="column is-12">
@@ -14,8 +14,8 @@
     <div class="columns">
       <div class="column is-12 is-size-3">
         <label class="label">
-          <input v-model="medico.ativo" checked type="checkbox">
-          Ativar Médico
+          <input v-model="secretaria.ativo" checked type="checkbox">
+          Ativar Secretária
         </label>
       </div>
     </div>
@@ -23,63 +23,63 @@
     <div class="field">
       <label class="label">Nome</label>
       <div class="control">
-        <input class="input" type="text" v-model="medico.nome" placeholder="nome">
+        <input class="input" type="text" v-model="secretaria.nome" placeholder="nome">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Telefone</label>
       <div class="control">
-        <input class="input" type="number" v-model="medico.telefone" placeholder="telefone">
+        <input class="input" type="number" v-model="secretaria.telefone" placeholder="telefone">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Celular</label>
       <div class="control">
-        <input class="input" type="number" v-model="medico.celular" placeholder="celular">
+        <input class="input" type="number" v-model="secretaria.celular" placeholder="celular">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Nacionalidade</label>
       <div class="control">
-        <input class="input" type="text" v-model="medico.nacionalidade" placeholder="nacionalidade">
+        <input class="input" type="text" v-model="secretaria.nacionalidade" placeholder="nacionalidade">
       </div>
     </div>
 
     <div class="field">
       <label class="label">CPF</label>
       <div class="control">
-        <input class="input" type="number" v-model="medico.cpf" placeholder="cpf">
+        <input class="input" type="number" v-model="secretaria.cpf" placeholder="cpf">
       </div>
     </div>
 
     <div class="field">
       <label class="label">RG</label>
       <div class="control">
-        <input class="input" type="number" v-model="medico.rg" placeholder="rg">
+        <input class="input" type="number" v-model="secretaria.rg" placeholder="rg">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Email</label>
       <div class="control">
-        <input class="input" type="email" v-model="medico.email" placeholder="e-mail">
+        <input class="input" type="email" v-model="secretaria.email" placeholder="e-mail">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Login</label>
       <div class="control">
-        <input class="input" type="text" v-model="medico.login" placeholder="login">
+        <input class="input" type="text" v-model="secretaria.login" placeholder="login">
       </div>
     </div>
 
     <div class="field">
       <label class="label">Senha</label>
       <div class="control">
-        <input class="input" type="password" v-model="medico.senha" placeholder="senha">
+        <input class="input" type="password" v-model="secretaria.senha" placeholder="senha">
       </div>
     </div>
 
@@ -88,7 +88,7 @@
         <label class="label">Sexo</label>
         <div class="control">
           <div class="select">
-            <select v-model="medico.sexo">
+            <select v-model="secretaria.sexo">
               <option>masculino</option>
               <option>feminino</option>
               <option>outro</option>
@@ -99,99 +99,83 @@
     </div>
 
     <div class="field">
-      <label class="label">CRM</label>
+      <label class="label">Salário</label>
       <div class="control">
-        <input class="input" type="number" v-model="medico.crm" placeholder="crm">
+        <input class="input" type="number" v-model="secretaria.salario" placeholder="salário">
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Consultório</label>
+      <label class="label">Data de Contratação</label>
       <div class="control">
-        <input class="input" type="text" v-model="medico.consultorio" placeholder="consultorio">
+        <input class="input" type="datetime-local" v-model="secretaria.dataContratacao" placeholder="data de contratação">
       </div>
     </div>
 
     <div class="field">
-      <label class="label">Porcentagem de Participação</label>
+      <label class="label">PIS</label>
       <div class="control">
-        <input class="input" type="number" v-model="medico.porcentagemParticipacao" placeholder="% de participação">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">Valor Consulta</label>
-      <div class="control">
-        <input class="input" type="number" v-model="medico.valorConsulta" placeholder="valor consulta">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">ID da Especialidade</label>
-      <div class="control">
-        <input class="input" type="number" v-model="medico.especialidade" placeholder="especialidade">
+        <input class="input" type="text" v-model="secretaria.pis" placeholder="pis">
       </div>
     </div>
 
     <div class="botoes-form">
-      <router-link class="link-cad" to="/medico">
+      <router-link class="link-cad" to="/paciente">
         <button class="button btn-voltar">Voltar</button>
       </router-link>
-      <button class="button btn-salvar" @click="onClickEditar()">Salvar</button>
+      <button class="button btn-salvar" @click="onClickEditar(secretaria.id)">Salvar</button>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';
-import { Medico } from '@/model/medico.model'
+import { Secretaria } from '@/model/secretaria.model'
 import { Notification } from '@/model/notification'
-import { MedicoClient } from '@/client/medico.client'
+import { SecretariaClient } from '@/client/secretaria.client'
 import {Prop} from "vue-property-decorator";
-export default class MedicoFormEditar extends Vue {
-  private medicoClient!: MedicoClient
-  private medico : Medico = new Medico()
+export default class SecretariaFormEditar extends Vue {
+  private secretariaClient!: SecretariaClient
+  private secretaria : Secretaria = new Secretaria()
   private notification : Notification = new Notification()
   @Prop({type: Number, required: false})
   private readonly id!: number
   @Prop({type: String, default: false})
   private readonly model!: string
   public mounted(): void {
-    this.medicoClient = new MedicoClient()
-    this.getMedico()
+    this.secretariaClient = new SecretariaClient()
+    this.getSecretaria()
   }
-  private getMedico(): void {
-    this.medicoClient.findById(this.id)
+  private getSecretaria(): void {
+    this.secretariaClient.findById(this.id)
         .then(
             sucess => {
-              this.medico.id = sucess.id
-              this.medico.nome = sucess.nome
-              this.medico.telefone = sucess.telefone
-              this.medico.celular = sucess.celular
-              this.medico.nacionalidade = sucess.nacionalidade
-              this.medico.cpf = sucess.cpf
-              this.medico.rg = sucess.rg
-              this.medico.email = sucess.email
-              this.medico.login = sucess.login
-              this.medico.senha = sucess.senha
-              this.medico.sexo = sucess.sexo
-              this.medico.crm = sucess.crm
-              this.medico.consultorio = sucess.consultorio
-              this.medico.especialidade = sucess.especialidade
-              this.medico.valorConsulta = sucess.valorConsulta
-              this.medico.porcentagemParticipacao = sucess.porcentagemParticipacao
-              this.medico.ativo = sucess.ativo
-              this.medico.cadastro = sucess.cadastro
-              this.medico.atualizado = sucess.atualizado
+              this.secretaria.id = sucess.id
+              this.secretaria.nome = sucess.nome
+              this.secretaria.telefone = sucess.telefone
+              this.secretaria.celular = sucess.celular
+              this.secretaria.nacionalidade = sucess.nacionalidade
+              this.secretaria.cpf = sucess.cpf
+              this.secretaria.rg = sucess.rg
+              this.secretaria.email = sucess.email
+              this.secretaria.login = sucess.login
+              this.secretaria.senha = sucess.senha
+              this.secretaria.sexo = sucess.sexo
+              this.secretaria.pis = sucess.pis
+              this.secretaria.salario = sucess.salario
+              this.secretaria.dataContratacao = sucess.dataContratacao
+              this.secretaria.ativo = sucess.ativo
+              this.secretaria.cadastro = sucess.cadastro
+              this.secretaria.atualizado = sucess.atualizado
             },
             error => console.log(error)
         )
   }
   private onClickEditar(): void {
-    this.medicoClient.editar(this.medico)
+    this.secretariaClient.editar(this.secretaria)
         .then(
             success => {
-              this.notification = this.notification.new(true, 'notification is-success', 'Médico Editado com sucesso!!!')
+              this.notification = this.notification.new(true, 'notification is-success', 'Secretaria Editado(a) com sucesso!!!')
               this.onClickLimpar()
             }, error => {
               this.notification = this.notification.new(true, 'notification is-danger', 'Error: ' + error)
@@ -202,7 +186,7 @@ export default class MedicoFormEditar extends Vue {
     this.notification = new Notification()
   }
   private onClickLimpar(): void {
-    this.medico = new Medico()
+    this.secretaria = new Secretaria()
   }
 }
 </script>

@@ -127,7 +127,8 @@
                 this.medico.senha = sucess.senha
                 this.medico.sexo = sucess.sexo
                 this.medico.crm = sucess.crm
-                this.medico.especialidade.nome = sucess.especialidade.nome
+                this.medico.consultorio = sucess.consultorio
+                this.medico.especialidade = sucess.especialidade
                 this.medico.valorConsulta = sucess.valorConsulta
                 this.medico.porcentagemParticipacao = sucess.porcentagemParticipacao
                 this.medico.ativo = sucess.ativo

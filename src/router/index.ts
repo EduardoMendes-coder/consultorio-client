@@ -120,6 +120,18 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/secretaria/FormDetalharSecretaria.vue")
   },
   {
+    path: '/secretaria/formulario/:model/:id',
+    name: 'detalharSecretaria',
+    props: (router) => ({ id: router.params.id, model: router.params.model }),
+    component: () => import("../views/secretaria/FormDetalharSecretaria.vue")
+  },
+  {
+    path: '/secretaria/formulario/:model/:id',
+    name: 'editarSecretaria',
+    props: (router) => ({ id: router.params.id, model: router.params.model }),
+    component: () => import("../views/secretaria/FormEditarSecretaria.vue")
+  },
+  {
     path: '/agenda',
     name: 'agenda',
     component: () => import("../views/agenda/AgendaView.vue")
