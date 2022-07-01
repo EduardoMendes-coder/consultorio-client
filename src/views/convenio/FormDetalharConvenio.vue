@@ -18,7 +18,7 @@
         <button class="button btn-voltar">Voltar</button>
       </router-link>
       <button class="button btn-editar" @click="onClickPaginaEditar(convenio.id)">Editar</button>
-      <button class="button btn-desativar">Desativar</button>
+      <button class="button btn-desativar" @click="desativarConvenio(convenio)">Desativar</button>
     </div>
   </div>
 </template>
@@ -28,6 +28,7 @@ import { Vue } from 'vue-class-component'
 import { Prop } from 'vue-property-decorator'
 import { ConvenioClient } from '@/client/convenio.client'
 import { Convenio } from '@/model/convenio.model'
+import {Especialidade} from "@/model/especialidade.model";
 
 export default class ConvenioFormDetalhar extends Vue {
   private convenioClient!: ConvenioClient
@@ -60,6 +61,17 @@ export default class ConvenioFormDetalhar extends Vue {
 
   private onClickPaginaEditar(idConvenio: number){
     this.$router.push({ name: 'editarConvenio', params: { id: idConvenio, model: 'editar' } })
+  }
+
+  private desativarConvenio(convenioDesativar: Convenio){
+    convenioDesativar.id = this.convenio.id
+    convenioDesativar.nome = this.convenio.nome
+    convenioDesativar.valor = this.convenio.valor
+    convenioDesativar.ativo = false
+    convenioDesativar.cadastro = this.convenio.cadastro
+    convenioDesativar.atualizado = this.convenio.atualizado
+    this.convenioClient.editar(convenioDesativar)
+    this.$router.push({name: 'convenio'})
   }
 }
 </script>

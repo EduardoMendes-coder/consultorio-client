@@ -27,95 +27,107 @@
       </div>
     </div>
 
-    <div class="field">
-      <label class="label">Telefone</label>
-      <div class="control">
-        <input class="input" type="number" v-model="secretaria.telefone" placeholder="telefone">
+    <div class="divisoes contato">
+      <div class="column is-4 is-size-4">
+        <label class="label">Telefone</label>
+        <div class="control">
+          <input class="input" type="number" v-model="secretaria.telefone" placeholder="telefone">
+        </div>
+      </div>
+
+      <div class="column is-4 is-size-4">
+        <label class="label">Celular</label>
+        <div class="control">
+          <input class="input" type="number" v-model="secretaria.celular" placeholder="celular">
+        </div>
+      </div>
+
+      <div class="column is-4 is-size-4">
+        <label class="label">Nacionalidade</label>
+        <div class="control">
+          <input class="input" type="text" v-model="secretaria.nacionalidade" placeholder="nacionalidade">
+        </div>
       </div>
     </div>
 
-    <div class="field">
-      <label class="label">Celular</label>
-      <div class="control">
-        <input class="input" type="number" v-model="secretaria.celular" placeholder="celular">
+    <div class="divisoes container-docs">
+      <div class="column is-6 is-size-6">
+        <label class="label">CPF</label>
+        <div class="control">
+          <input class="input" type="number" v-model="secretaria.cpf" placeholder="cpf">
+        </div>
+      </div>
+
+      <div class="column is-6 is-size-6">
+        <label class="label">RG</label>
+        <div class="control">
+          <input class="input" type="number" v-model="secretaria.rg" placeholder="rg">
+        </div>
       </div>
     </div>
 
-    <div class="field">
-      <label class="label">Nacionalidade</label>
-      <div class="control">
-        <input class="input" type="text" v-model="secretaria.nacionalidade" placeholder="nacionalidade">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">CPF</label>
-      <div class="control">
-        <input class="input" type="number" v-model="secretaria.cpf" placeholder="cpf">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">RG</label>
-      <div class="control">
-        <input class="input" type="number" v-model="secretaria.rg" placeholder="rg">
-      </div>
-    </div>
-
-    <div class="field">
       <label class="label">Email</label>
       <div class="control">
         <input class="input" type="email" v-model="secretaria.email" placeholder="e-mail">
       </div>
-    </div>
 
-    <div class="field">
-      <label class="label">Login</label>
-      <div class="control">
-        <input class="input" type="text" v-model="secretaria.login" placeholder="login">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">Senha</label>
-      <div class="control">
-        <input class="input" type="password" v-model="secretaria.senha" placeholder="senha">
-      </div>
-    </div>
-
-    <div class="enums">
-      <div class="enum-sexo">
-        <label class="label">Sexo</label>
+    <div class="divisoes container-acesso">
+      <div class="column is-6 is-size-6">
+        <label class="label">Login</label>
         <div class="control">
-          <div class="select">
-            <select v-model="secretaria.sexo">
-              <option>masculino</option>
-              <option>feminino</option>
-              <option>outro</option>
-            </select>
+          <input class="input" type="text" v-model="secretaria.login" placeholder="login">
+        </div>
+      </div>
+
+      <div class="column is-6 is-size-6">
+        <label class="label">Senha</label>
+        <div class="control">
+          <input class="input" type="password" v-model="secretaria.senha" placeholder="senha">
+        </div>
+      </div>
+    </div>
+
+    <div class="divisoes info-func">
+      <div class="column is-3 is-size-3">
+        <div class="enum-sexo">
+          <label class="label">Sexo</label>
+          <div class="control">
+            <div class="select">
+              <select v-model="secretaria.sexo">
+                <option>masculino</option>
+                <option>feminino</option>
+                <option>outro</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-3 is-size-3">
+        <div class="field">
+          <label class="label">Salário</label>
+          <div class="control">
+            <input class="input" type="number" v-model="secretaria.salario" placeholder="salário">
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-6 is-size-6">
+        <div class="field">
+          <label class="label">Data de Contratação</label>
+          <div class="control">
+            <input class="input" type="datetime-local" v-model="secretaria.dataContratacao" placeholder="data de contratação">
           </div>
         </div>
       </div>
     </div>
 
-    <div class="field">
-      <label class="label">Salário</label>
-      <div class="control">
-        <input class="input" type="number" v-model="secretaria.salario" placeholder="salário">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">Data de Contratação</label>
-      <div class="control">
-        <input class="input" type="datetime-local" v-model="secretaria.dataContratacao" placeholder="data de contratação">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">PIS</label>
-      <div class="control">
-        <input class="input" type="text" v-model="secretaria.pis" placeholder="pis">
+    <div class="column is-3 is-size-3">
+      <div class="field">
+        <label class="label">PIS</label>
+        <div class="control">
+          <input class="input" type="text" v-model="secretaria.pis" placeholder="pis">
+        </div>
       </div>
     </div>
 
@@ -130,9 +142,7 @@
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';
-import { Paciente } from '@/model/paciente.model'
 import { Notification } from '@/model/notification'
-import { PacienteClient } from '@/client/paciente.client'
 import {SecretariaClient} from "@/client/secretaria.client";
 import {Secretaria} from "@/model/secretaria.model";
 
@@ -170,6 +180,10 @@ export default class SecretariaForm extends Vue {
 .container{
   margin-left: 30px;
   width: 80%;
+}
+.divisoes{
+  display: flex;
+  flex-direction: row;
 }
 .titulo{
   display: flex;

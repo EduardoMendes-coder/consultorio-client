@@ -46,7 +46,7 @@
       <th>{{ item.crm }}</th>
       <th>{{ item.celular }}</th>
       <th>{{ item.valorConsulta }}</th>
-      <th>{{ item.especialidade.nome }}</th>
+      <th>{{ item.especialidade }}</th>
       <th>
         <button @click="onClickPaginaDetalhar(item.id)" style="background-color: dodgerblue; color: white" class="button btn-detalhar">Detalhar</button>
       </th>

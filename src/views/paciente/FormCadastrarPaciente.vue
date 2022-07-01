@@ -20,6 +20,7 @@
       </div>
     </div>
 
+
     <div class="field">
       <label class="label">Nome</label>
       <div class="control">
@@ -27,99 +28,112 @@
       </div>
     </div>
 
-    <div class="field">
-      <label class="label">Telefone</label>
-      <div class="control">
-        <input class="input" type="number" v-model="paciente.telefone" placeholder="telefone">
-      </div>
-    </div>
 
-    <div class="field">
-      <label class="label">Celular</label>
-      <div class="control">
-        <input class="input" type="number" v-model="paciente.celular" placeholder="celular">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">Nacionalidade</label>
-      <div class="control">
-        <input class="input" type="text" v-model="paciente.nacionalidade" placeholder="nacionalidade">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">CPF</label>
-      <div class="control">
-        <input class="input" type="number" v-model="paciente.cpf" placeholder="cpf">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">RG</label>
-      <div class="control">
-        <input class="input" type="number" v-model="paciente.rg" placeholder="rg">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">Email</label>
-      <div class="control">
-        <input class="input" type="email" v-model="paciente.email" placeholder="e-mail">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">Login</label>
-      <div class="control">
-        <input class="input" type="text" v-model="paciente.login" placeholder="login">
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">Senha</label>
-      <div class="control">
-        <input class="input" type="password" v-model="paciente.senha" placeholder="senha">
-      </div>
-    </div>
-
-    <div class="enums">
-      <div class="enum-sexo">
-        <label class="label">Sexo</label>
+    <div class="divisoes contato">
+      <div class="column is-4 is-size-4">
+        <label class="label">Telefone</label>
         <div class="control">
-          <div class="select">
-            <select v-model="paciente.sexo">
-              <option>masculino</option>
-              <option>feminino</option>
-              <option>outro</option>
-            </select>
-          </div>
+          <input class="input" type="number" v-model="paciente.telefone" placeholder="telefone">
         </div>
       </div>
-      <div class="enum-tipo-atendimento">
-        <label class="label">Tipo Atendimento</label>
+
+      <div class="column is-4 is-size-4">
+        <label class="label">Celular</label>
         <div class="control">
-          <div class="select">
-            <select v-model="paciente.tipoAtendimento">
-              <option>convenio</option>
-              <option>particular</option>
-            </select>
-          </div>
+          <input class="input" type="number" v-model="paciente.celular" placeholder="celular">
+        </div>
+      </div>
+
+      <div class="column is-4 is-size-4">
+        <label class="label">Nacionalidade</label>
+        <div class="control">
+          <input class="input" type="text" v-model="paciente.nacionalidade" placeholder="nacionalidade">
         </div>
       </div>
     </div>
 
-    <div class="field">
-      <label class="label">N° Cartão Convênio</label>
-      <div class="control">
-        <input class="input" type="number" v-model="paciente.numeroCartaoConvenio" placeholder="n° cartão convênio">
+    <div class="divisoes container-docs">
+      <div class="column is-6 is-size-6">
+        <label class="label">CPF</label>
+        <div class="control">
+          <input class="input" type="number" v-model="paciente.cpf" placeholder="cpf">
+        </div>
+      </div>
+
+      <div class="column is-6 is-size-6">
+        <label class="label">RG</label>
+        <div class="control">
+          <input class="input" type="number" v-model="paciente.rg" placeholder="rg">
+        </div>
       </div>
     </div>
 
-    <div class="field">
-      <label class="label">Data Vencimento</label>
-      <div class="control">
-        <input class="input" type="datetime-local" v-model="paciente.dataVencimento" placeholder="data vencimento">
+    <label class="label">Email</label>
+    <div class="control">
+      <input class="input" type="email" v-model="paciente.email" placeholder="e-mail">
+    </div>
+
+    <div class="divisoes container-acesso">
+      <div class="column is-6 is-size-6">
+        <label class="label">Login</label>
+        <div class="control">
+          <input class="input" type="text" v-model="paciente.login" placeholder="login">
+        </div>
+      </div>
+
+      <div class="column is-6 is-size-6">
+        <label class="label">Senha</label>
+        <div class="control">
+          <input class="input" type="password" v-model="paciente.senha" placeholder="senha">
+        </div>
+      </div>
+    </div>
+
+    <div class="divisoes infos-enums">
+      <div class="column is-6 is-size-6">
+        <div class="enums">
+          <div class="enum-sexo">
+            <label class="label">Sexo</label>
+            <div class="control">
+              <div class="select">
+                <select v-model="paciente.sexo">
+                  <option>masculino</option>
+                  <option>feminino</option>
+                  <option>outro</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="enum-tipo-atendimento">
+            <label class="label">Tipo Atendimento</label>
+            <div class="control">
+              <div class="select">
+                <select v-model="paciente.tipoAtendimento">
+                  <option>convenio</option>
+                  <option>particular</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-3 is-size-3">
+        <div class="field">
+          <label class="label">N° Cartão Convênio</label>
+          <div class="control">
+            <input class="input" type="number" v-model="paciente.numeroCartaoConvenio" placeholder="n° cartão convênio">
+          </div>
+        </div>
+      </div>
+
+      <div class="column is-3 is-size-3">
+        <div class="field">
+          <label class="label">Data Vencimento</label>
+          <div class="control">
+            <input class="input" type="datetime-local" v-model="paciente.dataVencimento" placeholder="data vencimento">
+          </div>
+        </div>
       </div>
     </div>
 
@@ -179,6 +193,10 @@ export default class PacienteForm extends Vue {
 .container{
   margin-left: 30px;
   width: 80%;
+}
+.divisoes{
+  display: flex;
+  flex-direction: row;
 }
 .titulo{
   display: flex;
