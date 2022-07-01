@@ -147,7 +147,7 @@
         <div class="field">
           <label class="label">ID da Especialidade</label>
           <div class="control">
-            <input class="input" type="number" v-model="medico.especialidade" placeholder="especialidade">
+            <input class="input" type="number" v-model="getIdEspecialidade" placeholder="especialidade">
           </div>
         </div>
       </div>
@@ -167,14 +167,21 @@ import { Vue } from 'vue-class-component';
 import { Medico } from '@/model/medico.model'
 import { Notification } from '@/model/notification'
 import { MedicoClient } from '@/client/medico.client'
+import { Especialidade} from "@/model/especialidade.model";
+import { EspecialidadeClient } from "@/client/especialidade.client";
 
 export default class MedicoForm extends Vue {
   private medicoClient!: MedicoClient
   private medico : Medico = new Medico()
   private notification : Notification = new Notification()
+  private especialidadeClient!: EspecialidadeClient
+  private especialidade : Especialidade = new Especialidade()
+  private getIdEspecialidade!: number
 
   public mounted(): void {
     this.medicoClient = new MedicoClient()
+    this.especialidadeClient = new EspecialidadeClient()
+    this.getEspecialidade()
   }
 
   private onClickCadastrar(): void {
@@ -193,6 +200,20 @@ export default class MedicoForm extends Vue {
   }
   private onClickLimpar(): void {
     this.medico = new Medico()
+  }
+
+  private getEspecialidade(): void {
+    this.especialidadeClient.findById(this.getIdEspecialidade)
+        .then(
+            sucess => {
+              this.especialidade.id = sucess.id
+              this.especialidade.nome = sucess.nome
+              this.especialidade.ativo = sucess.ativo
+              this.especialidade.cadastro = sucess.cadastro
+              this.especialidade.atualizado = sucess.atualizado
+            },
+            error => console.log(error)
+        )
   }
 }
 </script>
