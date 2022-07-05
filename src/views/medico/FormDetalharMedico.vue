@@ -90,7 +90,7 @@
         <button class="button btn-voltar">Voltar</button>
       </router-link>
       <button @click="onClickPaginaEditar(medico.id)" class="button btn-editar">Editar</button>
-      <button class="button btn-desativar">Desativar</button>
+      <button class="button btn-desativar" @click="desativarMedico(medico)">Desativar</button>
     </div>
   </div>
 </template>
@@ -100,6 +100,7 @@
   import { Prop } from 'vue-property-decorator'
   import { MedicoClient } from '@/client/medico.client'
   import { Medico } from '@/model/medico.model'
+  import {Paciente} from "@/model/paciente.model";
   export default class MedicoFormDetalhar extends Vue {
     private medicoClient!: MedicoClient
     private medico : Medico = new Medico()
@@ -138,6 +139,11 @@
               error => console.log(error)
           )
     }
+
+    private desativarMedico(medico: Medico){
+      this.medicoClient.desativar(medico)
+    }
+
     private onClickPaginaEditar(idMedico: number){
       this.$router.push({ name: 'editarMedico', params: { id: idMedico, model: 'editar' } })
     }

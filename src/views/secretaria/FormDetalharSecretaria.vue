@@ -79,7 +79,7 @@
         <button class="button btn-voltar">Voltar</button>
       </router-link>
       <button class="button btn-editar" @click="onClickPaginaEditar(secretaria.id)">Editar</button>
-      <button class="button btn-desativar">Desativar</button>
+      <button class="button btn-desativar" @click="desativarSecretaria(secretaria)">Desativar</button>
     </div>
   </div>
 </template>
@@ -89,6 +89,7 @@ import { Vue } from 'vue-class-component'
 import { Prop } from 'vue-property-decorator'
 import { SecretariaClient } from '@/client/secretaria.client'
 import { Secretaria } from '@/model/secretaria.model'
+import {Paciente} from "@/model/paciente.model";
 
 export default class SecretariaFormDetalhar extends Vue {
   private secretariaClient!: SecretariaClient
@@ -126,6 +127,11 @@ export default class SecretariaFormDetalhar extends Vue {
             error => console.log(error)
         )
   }
+
+  private desativarSecretaria(secretaria: Secretaria){
+    this.secretariaClient.desativar(secretaria)
+  }
+
   private onClickPaginaEditar(idSecretaria: number){
     this.$router.push({ name: 'editarSecretaria', params: { id: idSecretaria, model: 'editar' } })
   }

@@ -84,7 +84,7 @@
         <button class="button btn-voltar">Voltar</button>
       </router-link>
       <button class="button btn-editar" @click="onClickPaginaEditar(paciente.id)">Editar</button>
-      <button class="button btn-desativar">Desativar</button>
+      <button class="button btn-desativar" @click="desativarPaciente(paciente)">Desativar</button>
     </div>
   </div>
 </template>
@@ -132,6 +132,11 @@
               error => console.log(error)
           )
     }
+
+    private desativarPaciente(paciente: Paciente){
+      this.pacienteClient.desativar(paciente)
+    }
+
     private onClickPaginaEditar(idPaciente: number){
       this.$router.push({ name: 'editarPaciente', params: { id: idPaciente, model: 'editar' } })
     }
